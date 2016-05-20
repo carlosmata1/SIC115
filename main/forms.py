@@ -44,7 +44,7 @@ class TransaccionForm(forms.Form):
 			queryset=TipoTransaccion.objects.all())
 	descripcion=forms.CharField(widget=forms.Textarea)
 
-	fecha=forms.DateField()
+	
 
 	
 

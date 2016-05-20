@@ -16,6 +16,7 @@ from django.forms import formset_factory
 from main.forms import EmpleadoFomr
 from django.forms import formset_factory
 from django.db.models import Max,Sum,Avg
+import time
 
 @login_required(login_url='login')
 def index_view(request):
@@ -183,7 +184,11 @@ def libro_diario(request):
 
 
     return render(request, 'main/libro_diario.html', {
-          'titulo': 'Libro Diario','transaccion':transaccion,'agregar':False
+          'titulo': 'Libro Diario',
+          'transaccion':transaccion,'agregar':False,
+          'transacciones': Transaccion.objects.filter(fecha=time.strftime("%Y-%m-%d"))
+          
+
     })
 def guardarMovimientos(request,formulario,movimientos,transaccion):
     for movimiento in movimientos :
