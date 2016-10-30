@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="images/frances.ico">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/index.css"  media="screen,projection"/>
+      <link href="css\prism.css" rel="stylesheet">
+  	  <link href="css\ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Frances</title>
+    </head>
+
+    <body>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+       <!--Barra lateral-->
+       <header>
+      <div class="container "><a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="material-icons">menu</i></a></div>
+      <ul id="nav-mobile" class="side-nav fixed">
+        <img src="images/LogoSIC.jpg" width="300px">
+
+        <li><div class="divider"></div></li>
+
+        <li class="bold"><a href="index.html" class="waves-effect waves-black"><i class="material-icons">home</i>Inicio</a></li>
+        <li class="bold"><a href="libro_diario.html" class="waves-effect waves-black"><i class="material-icons">book</i>Libro diario</a></li>
+
+        <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">assessment</i>Estados financieros</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="balance_comprobacion.html" class="waves-effect waves-black">Balance de comprobación</a></li>
+                  <li><a href="estado_resultados.html" class="waves-effect waves-black">Estado de resultados</a></li>
+                  <li><a href="estado_capital.html" class="waves-effect waves-black">Estado de capital </a></li>
+                  <li><a href="balance_general.html" class="waves-effect waves-black">Balance general</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="bold"><a href="ajustes_financieros.html" class="waves-effect wave-black"><i class="material-icons">settings</i>Ajustes Financieros</a></li>
+
+
+
+            <li class="bold"><a class="collapsible-header  waves-effect wave-black"><i class="material-icons">create</i>Opciones</a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="empleados.html" class="waves-effect waves-black">Empleados</a></li>
+                  <li><a href="usuarios.html" class="waves-effect waves-black">Usuarios</a></li>
+                  <li><a href="proveedores.html" class="waves-effect waves-black">Proveedores</a></li>
+
+                </ul>
+              </div>
+            </li>
+
+
+          </ul>
+        </li>
+
+        <li class="bold"><a href="ayuda.html" class="waves-effect waves-black"><i class="material-icons">help</i>Ayuda</a></li>
+        <li class="bold"><a href="acerca.html" class="waves-effect waves-black"><i class="material-icons">email</i>Acerca de</a></li>
+        <li class="bold"><a href="login.html" class="waves-effect waves-black"><i class="material-icons">close</i>Salir</a></li>
+      </ul>
+    </header>
+
+    <!--
+      <main>
+
+      </main>
+      Cuerpo del sistema-->
+
+
+
+<!--
+       <footer class="page-footer #263238 blue-grey darken-4">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="white-text">Footer Content</hp>
+                <p class="grey-text text-lighten-4 thin">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h6 class="white-text">Links</h6>
+                <ul>
+                  <li><a class="grey-text text-lighten-3 thin" href="#!">Link 1</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container thin">
+          AERO 2016
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+        footer-->
+
+
+      	<script>
+     		    $(document).ready(function(){
+            $(".button-collapse").sideNav();
+            });
+        </script>
+
+    </body>
+  </html>

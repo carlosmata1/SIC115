@@ -1,0 +1,206 @@
+ <head>
+   <meta charset="UTF-8">
+   <link rel="shortcut icon" href="images/frances.ico">
+     <!--Import Google Icon Font-->
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+     <link type="text/css" rel="stylesheet" href="css/index.css"  media="screen,projection"/>
+     <link href="css\prism.css" rel="stylesheet">
+     <link href="css\ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <title>Libro diario</title>
+    </head>
+
+    <body>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+       <!--Barra lateral-->
+     <header>
+       <div class="container "><a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="material-icons">menu</i></a></div>
+       <ul id="nav-mobile" class="side-nav fixed">
+         <img src="images/LogoSIC.jpg" width="300px">
+
+         <li><div class="divider"></div></li>
+
+         <li class="bold"><a href="index.html" class="waves-effect waves-black"><i class="material-icons">home</i>Inicio</a></li>
+         <li class="bold active"><a href="libro_diario.html" class="waves-effect waves-black"><i class="material-icons">book</i>Libro diario</a></li>
+
+         <li class="no-padding">
+           <ul class="collapsible collapsible-accordion">
+             <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">assessment</i>Estados financieros</a>
+               <div class="collapsible-body">
+                 <ul>
+                   <li><a href="balance_comprobacion.html" class="waves-effect waves-black">Balance de comprobación</a></li>
+                   <li><a href="estado_resultados.html" class="waves-effect waves-black">Estado de resultados</a></li>
+                   <li><a href="estado_capital.html" class="waves-effect waves-black">Estado de capital </a></li>
+                   <li><a href="balance_general.html" class="waves-effect waves-black">Balance general</a></li>
+                 </ul>
+               </div>
+             </li>
+
+             <li class="bold"><a href="ajustes_financieros.html" class="waves-effect wave-black"><i class="material-icons">settings</i>Ajustes Financieros</a></li>
+
+
+
+             <li class="bold"><a class="collapsible-header  waves-effect wave-black"><i class="material-icons">create</i>Opciones</a>
+               <div class="collapsible-body">
+                 <ul>
+                   <li><a href="empleados.html" class="waves-effect waves-black">Empleados</a></li>
+                   <li><a href="usuarios.html" class="waves-effect waves-black">Usuarios</a></li>
+                   <li><a href="proveedores.html" class="waves-effect waves-black">Proveedores</a></li>
+
+                 </ul>
+               </div>
+             </li>
+
+
+           </ul>
+         </li>
+
+         <li class="bold"><a href="ayuda.html" class="waves-effect waves-black"><i class="material-icons">help</i>Ayuda</a></li>
+         <li class="bold"><a href="acerca.html" class="waves-effect waves-black"><i class="material-icons">email</i>Acerca de</a></li>
+         <li class="bold"><a href="login.html" class="waves-effect waves-black"><i class="material-icons">close</i>Salir</a></li>
+       </ul>
+    </header>
+
+    <!--Cuerpo del sistema-->
+      <main>
+         <div class="section no-pad-bot #263238 blue-grey darken-4" id="ini">
+         <div class="container ">
+          <h2 class="white-text left thin">Libro Diario </h2>
+          <div class='row center'>
+          </div>
+        </div>
+        </div>
+
+        <form>
+
+        <div class="container">
+
+        <a class="waves-effect waves-light btn"><i class="material-icons left">description</i>Ver transacciones</a>
+
+
+        <div class="card-panel">
+        <h4 class="thin">Registrar transacción</h4>
+        <div class="divider"></div>
+
+
+        <br>
+
+        <div class="row">
+           <div class="input-field col s6">
+              <input type="date" class="datepicker" id="fecha1" required="">
+              <label for="fecha1">Fecha de transacción</label>
+
+          </div>
+
+          <div class="input-field col s5 push-s1">
+            <input id="comentario" type="text" length="100">
+            <label for="comentario">Comentario de transacción</label>
+          </div>
+
+          </div>
+
+
+          <div class="row">
+            <div class="col s5">
+            <h3 class="flow-text center">Cargar</h3>
+            <div class="divider"></div>
+
+            <br>
+             <select class="">
+             <option value="" disabled selected>Seleccione una cuenta</option>
+             <option value="1">Option 1</option>
+             <option value="2">Option 2</option>
+             <option value="3">Option 3</option>
+             </select>
+
+             <br>
+             <div class="col s5">
+             <div class="input-field">
+               <label for="monto1">Monto ($)</label>
+                <input id="monto1" type="number" min="0">
+            </div>
+          </div>
+
+             <br>
+
+
+
+            </div>
+
+
+            <div class="col s5 offset-s2 ">
+            <h3 class="flow-text center">Abonar</h3>
+            <div class="divider"></div>
+            <br>
+             <select class="">
+             <option value="" disabled selected>Seleccione una cuenta</option>
+             <option value="1">Option 1</option>
+             <option value="2">Option 2</option>
+             <option value="3">Option 3</option>
+             </select>
+
+             <br>
+              <div class="col s5">
+             <div class="input-field">
+               <label for="monto2">Monto ($)</label>
+                <input id="monto2" type="number" min="0">
+            </div>
+
+            </div>
+          </div>
+
+            <br>
+            <div class="row">
+            <div class="col s3 offset-s9">
+            <br>
+            <br>                
+            <button class="btn waves-effect waves-light #43a047 green darken-1" type="submit" name="action">Registrar
+             <i class="material-icons left">note_add</i>
+            </button>
+
+            </div>
+            </div>
+
+        </div>
+        </div>
+        </form>
+
+
+       </main>
+
+
+<!--footer-->
+       <footer class="page-footer #b71c1c red darken-4">
+          <div class="footer-copyright">
+              <div class="container thin">
+                  <span>SISTEMAS CONTABLES [SIC115]</span>
+              </div>
+          </div>
+        </footer>
+
+
+
+   <script>
+     		$(document).ready(function(){
+
+          		$(".button-collapse").sideNav();
+              $('select').material_select();
+              $('.datepicker').pickadate({
+                   selectMonths: true, // Creates a dropdown to control month
+                  selectYears: 15 // Creates a dropdown of 15 years to control year
+                    });
+
+               });
+
+
+     	</script>
+
+    </body>
+  </html>
