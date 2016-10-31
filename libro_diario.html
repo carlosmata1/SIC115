@@ -89,17 +89,42 @@
         <h4 class="thin">Registrar transacción</h4>
         <div class="divider"></div>
 
-
         <br>
+        <div class="row">
+          <div class="col s6">
+
+             <select class="" required="">
+             <option value="" disabled selected>Tipo de transacción</option>
+             <option value="1">Compras</option>
+             <option value="2">Ventas</option>
+             <option value="3">Devoluciones</option>
+             </select>  
+           </div>
+           <div class="col s3">
+
+             <select  disabled class="">
+             <option value="" disabled selected>Proveedores</option>
+             </select>  
+           </div>
+            <div class="col s3">
+
+             <select disabled class="">
+             <option value="" disabled selected>Clientes</option>
+             </select>  
+           </div>
+
+        </div>
+
+
 
         <div class="row">
            <div class="input-field col s6">
-              <input type="date" class="datepicker" id="fecha1" required="">
+              <input type="date" class="datepicker" id="fecha1" required="selecciona una fecha">
               <label for="fecha1">Fecha de transacción</label>
 
           </div>
 
-          <div class="input-field col s5 push-s1">
+          <div class="input-field col s6">
             <input id="comentario" type="text" length="100">
             <label for="comentario">Comentario de transacción</label>
           </div>
@@ -157,19 +182,14 @@
           </div>
 
             <br>
-            <div class="row">
-            <div class="col s3 offset-s9">
             <br>
-            <br>                
-            <button class="btn waves-effect waves-light #43a047 green darken-1" type="submit" name="action">Registrar
+          
+            <button class="btn waves-effect waves-light #43a047 green darken-1 right" type="submit" name="action">Registrar
              <i class="material-icons left">note_add</i>
             </button>
-
-            </div>
-            </div>
-
         </div>
         </div>
+       
         </form>
 
 

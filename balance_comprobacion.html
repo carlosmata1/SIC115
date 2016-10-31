@@ -81,6 +81,24 @@
 <div class="container">
 
 
+        <div class="row">
+           <div class="input-field col s6">
+              <input type="date" class="datepicker" id="fecha1" required="selecciona una fecha">
+              <label for="fecha1">Seleccione la fecha de inicio</label>
+
+          </div>
+
+           <div class="input-field col s6">
+              <input type="date" class="datepicker" id="fecha2" required="selecciona una fecha">
+              <label for="fecha2">Seleccione la fecha de finalizacio</label>
+
+          </div>
+
+          </div>
+
+
+
+
 
 
      <div class="card-panel">
@@ -153,6 +171,11 @@
  		$(document).ready(function(){
 
       		$(".button-collapse").sideNav();
+           $('.datepicker').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: true,
+          selectDays:false // Creates a dropdown of 15 years to control year
+          });
 
            });
 
