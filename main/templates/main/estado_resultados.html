@@ -1,0 +1,87 @@
+{% extends 'template_home.html' %}
+
+{% block titulo %}Estado de Resultados{% endblock %}
+
+{% block contenido %}
+    <div class="container">
+        <div class="col m12">
+            <div class="card-panel" >
+                <div >
+                    <h5 class="center-align">Frances</h5>
+                    <h6  class="center-align">Estado de Resultado</h6>
+                    <h6  class="center-align">Del 1 al 30 de noviembre</h6>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col m6">
+
+                        <table  class="highlight">
+                            <thead>
+                            <tr>
+                                <th data-field="tipo"><ins>Ingreso</ins></th>
+                                <th data-field="debe"><ins>Debe</ins></th>
+                                <th data-field="haber"><ins>Haber</ins></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>Ingreso por venta</td>
+                                <td></td>
+                                <td>$1000</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div><!-- fin de la primera tabla-->
+                    <div class="col m6">
+
+                        <table  class="highlight">
+                            <thead>
+                            <tr>
+                                <th data-field="tipo"><ins>Egresos</ins></th>
+                                <th data-field="debe"><ins>Debe</ins></th>
+                                <th data-field="haber"><ins>Haber</ins></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>Costo de lo vendido</td>
+                                <td>$130.87</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Gasto por servicio</td>
+                                <td>$135</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Gasto por salario</td>
+                                <td>$500</td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table><!-- fin de la segunda tabla-->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
+    </div>
+{% endblock %}

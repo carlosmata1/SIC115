@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+
+    <link rel="shortcut icon" href="{% static 'main/images/frances.ico' %}">
+    <!--Import Google Icon Font-->
+    <link href="{% static 'main/css/icons.css' %}" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{% static 'main/css/materialize.min.css' %}" media="screen,projection"/>
+    <link href="{% static 'main/css/prism.css' %}" rel="stylesheet">
+    <link href="{% static 'main/css/ghpages-materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% block extra_lib %}
+        <link type="text/css" rel="stylesheet" href="{% static 'main/css/index.css' %}"  media="screen,projection"/>
+    {% endblock %}
+
+    <title>{{ titulo }}</title>
+</head>
+<body>
+
+{% block menu %}
+    {% include 'template_menu.html' %}
+{% endblock %}
+
+{% block header %}
+    <main>
+        <div class="section no-pad-bot #263238 blue-grey darken-4" id="ini">
+            <div class="container ">
+                <h2 class="white-text left thin">{{ titulo }}</h2>
+                <div class='row center'>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+<main>
+    {% block contenido %}{% endblock %}
+</main>
+
+{% block footer %}
+    <footer class="page-footer #b71c1c red darken-4">
+        <div class="footer-copyright">
+            <div class="container thin">
+                AERO 2016
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+
+
+<script src="{% static 'main/js/jquery-3.1.0.js' %}"></script>
+<script src="{% static 'main/js/materialize.min.js' %}"></script>
+<script src="{% static 'main/js/init.js' %}"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.slider').slider({full_width: true});
+        $(".button-collapse").sideNav();
+        Materialize.updateTextFields();
+        $('.modal-trigger').leanModal() ;
+        $('.parallax').parallax();
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+</script>
+</body>
+</html>
