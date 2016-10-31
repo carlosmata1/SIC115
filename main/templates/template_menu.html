@@ -1,0 +1,44 @@
+<header>
+    {% load staticfiles %}
+    <div class="container "><a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="material-icons">menu</i></a></div>
+    <ul id="nav-mobile" class="side-nav fixed">
+        <img src="{% static "main/images/LogoSIC.jpg" %}" width="300px">
+
+        <li><div class="divider"></div></li>
+
+        <li class="bold"><a href="{% url 'index' %}" class="waves-effect waves-black"><i class="material-icons">home</i>Inicio</a></li>
+        <li class="bold"><a href="{% url 'libro_diario' %}" class="waves-effect waves-black"><i class="material-icons">book</i>Libro diario</a></li>
+
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">assessment</i>Estados financieros</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{% url 'balance_comprobacion' %}" class="waves-effect waves-black">Balance de comprobación</a></li>
+                            <li><a href="{% url 'estado_resultados' %}" class="waves-effect waves-black">Estado de resultados</a></li>
+                            <li><a href="{% url 'estado_capital' %}" class="waves-effect waves-black">Estado de capital </a></li>
+                            <li><a href="{% url 'balance_general' %}" class="waves-effect waves-black">Balance general</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="bold"><a href="{% url 'ajustes_financieros' %}" class="waves-effect waves-black"><i class="material-icons">settings</i>Ajustes Financieros</a></li>
+
+                <li class="bold"><a class="collapsible-header  waves-effect waves-black"><i class="material-icons">create</i>Opciones</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="{% url 'empleados_list' %}" class="waves-effect waves-black">Empleados</a></li>
+                            <li><a href="{% url 'usuarios_list' %}" class="waves-effect waves-black">Usuarios</a></li>
+                            <li><a href="{% url 'proveedores_list' %}" class="waves-effect waves-black">Proveedores</a></li>
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+        <li class="bold"><a href="{% url 'ayuda' %}" class="waves-effect waves-black"><i class="material-icons">help</i>Ayuda</a></li>
+        <li class="bold"><a href="{% url 'acerca_de' %}" class="waves-effect waves-black"><i class="material-icons">email</i>Acerca de</a></li>
+        <li class="bold"><a href="{% url 'logout' %}" class="waves-effect waves-black"><i class="material-icons">close</i>Salir</a></li>
+    </ul>
+</header>

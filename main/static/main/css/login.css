@@ -1,0 +1,23 @@
+body{
+	background-image: url(../images/ffondo2.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	background-size: cover; /*Para que la imagen sea responsiva*/
+
+}
+#imagen{
+margin-top: 40px;
+
+
+}
+
+#log{
+	margin-top: 60px;
+
+}
+/*
+#BotonEnviar{
+	position: relative;
+  left: 298px;
+}
+*/
