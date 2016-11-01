@@ -3,102 +3,104 @@
 {% block titulo %}Estado de Capital{% endblock %}
 
 {% block contenido %}
-    <div class="container">
-        <div class="col m12">
-            <div class="card-panel" >
-                <div >
-                    <h5 class="center-align">Frances</h5>
-                    <h6  class="center-align">Estado de Resultado</h6>
-                    <h6 class="center-align">del 1 al 30 de Noviembre</h6>
-                    <br>
-                </div>
+    <main>
+        <div class="container">
+            <div class="col m12">
+                <div class="card-panel" >
+                    <div >
+                        <h5 class="center-align">Frances</h5>
+                        <h6  class="center-align">Estado de Resultado</h6>
+                        <h6 class="center-align">del 1 al 30 de Noviembre</h6>
+                        <br>
+                    </div>
 
-                <div class="row">
-                    <div class="col m6">
-                        <table  class="highlight">
-                            <thead>
-                            <tr>
-                                <th data-field="tipo"><ins>Inversiones</ins></th>
-                                <th data-field="debe"><ins>Debe</ins></th>
-                                <th data-field="haber"><ins>Haber</ins></th>
-                            </tr>
-                            </thead>
+                    <div class="row">
+                        <div class="col m6">
+                            <table  class="highlight">
+                                <thead>
+                                <tr>
+                                    <th data-field="tipo"><ins>Inversiones</ins></th>
+                                    <th data-field="debe"><ins>Debe</ins></th>
+                                    <th data-field="haber"><ins>Haber</ins></th>
+                                </tr>
+                                </thead>
 
-                            <tbody>
-                            <tr>
-                                <td>Inversion inicial</td>
-                                <td></td>
-                                <td>100000</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <table class="striped">
-                            <tbody>
-                            <tr>
-                                <td>Total de Inversiones:</td>
-                                <td></td>
-                                <td>$100000</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div><!-- fin de la primera tabla-->
-
-                    <div class="col m6">
-
-                        <table  class="highlight">
-                            <thead>
-                            <tr>
-                                <th data-field="tipo"><ins>Desinversiones</ins></th>
-                                <th data-field="debe"><ins>Debe</ins></th>
-                                <th data-field="haber"><ins>Haber</ins></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            <tr>
-                                <td>Gastos personales</td>
-                                <td>$5000</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            </tbody>
-
-                            <table class="striped">
                                 <tbody>
                                 <tr>
-                                    <td>Total de Desinversiones:</td>
-                                    <td>5000</td>
-                                    <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                                    <td>Inversion inicial</td>
+                                    <td></td>
+                                    <td>100000</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 </tbody>
                             </table>
 
-                        </table><!-- fin de la segunda tabla-->
-                    </div>
-                </div>
+                            <table class="striped">
+                                <tbody>
+                                <tr>
+                                    <td>Total de Inversiones:</td>
+                                    <td></td>
+                                    <td>$100000</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- fin de la primera tabla-->
 
+                        <div class="col m6">
+
+                            <table  class="highlight">
+                                <thead>
+                                <tr>
+                                    <th data-field="tipo"><ins>Desinversiones</ins></th>
+                                    <th data-field="debe"><ins>Debe</ins></th>
+                                    <th data-field="haber"><ins>Haber</ins></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>Gastos personales</td>
+                                    <td>$5000</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+
+                                <table class="striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>Total de Desinversiones:</td>
+                                        <td>5000</td>
+                                        <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </table><!-- fin de la segunda tabla-->
+                        </div>
+                    </div>
+
+                </div>
             </div>
+            <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
         </div>
-        <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
-    </div>
+    </main>
 {% endblock %}
