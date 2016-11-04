@@ -67,3 +67,9 @@ class Cliente(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre = models.CharField(max_length=100, null=False)
     telefono = models.CharField(max_length=9, null=False)
+
+
+class Inventario(models.Model):
+    id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
+    descripcion = models.TextField(max_length=100, null=False)
+    valor = models.DecimalField(max_digits=5, decimal_places=5)
