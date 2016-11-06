@@ -57,6 +57,7 @@ class TipoCuenta(models.Model):
 
 class Cuenta(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
+    tipo = models.ForeignKey(TipoCuenta, on_delete=models.CASCADE, default=1)
     saldoInicial = models.DecimalField(max_digits=5, decimal_places=5)
     debe = models.DecimalField(max_digits=5, decimal_places=5)
     haber = models.DecimalField(max_digits=5, decimal_places=5)
@@ -73,3 +74,12 @@ class Inventario(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     descripcion = models.TextField(max_length=100, null=False)
     valor = models.DecimalField(max_digits=5, decimal_places=5)
+
+
+class Transaccion(models.Model):
+    id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
+    fecha = models.DateField()
+    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    tipo = models.ForeignKey(TipoTransaccion, on_delete=models.CASCADE)
+    cuenta = models.ForeignKey(Cuenta, on_delete=models.CASCADE)
+    monto = models.DecimalField(max_digits=5, decimal_places=5)
