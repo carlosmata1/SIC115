@@ -3,73 +3,85 @@
 {% block titulo %}Estado de Comprobación{% endblock %}
 
 {% block contenido %}
-    <div class="container">
+    <main>
+        <div class="container">
 
 
-        <div class="row">
-            <div class="input-field col s6">
-                <input type="date" class="datepicker" id="fecha1" required>
-                <label for="fecha1">Seleccione la fecha de inicio</label>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input type="date" class="datepicker" id="fecha1" required>
+                    <label for="fecha1">Fecha de inicio</label>
+                </div>
+
+                <div class="input-field col s4">
+                    <input type="date" class="datepicker" id="fecha2" required>
+                    <label for="fecha2">Fcha de finalizacion</label>
+                </div>
+                <div class="input-field col s4">
+                <a class="waves-effect waves-light btn"><i class="material-icons left">subtitles</i>Crear Informe</a>
+                </div>
+
             </div>
 
-            <div class="input-field col s6">
-                <input type="date" class="datepicker" id="fecha2" required>
-                <label for="fecha2">Seleccione la fecha de finalizacio</label>
+
+
+
+
+
+            <div class="card-panel">
+                <div>
+                    <h5 class="center-align">Francés</h5>
+                    <h6 class="center-align">Balance de comprobación</h6>
+                    <h6 class="center-align">Del 1 al 31 de Noviembre</h6>
+                </div>
+
+                <br>
+
+                <table class="highlight responsive-table">
+                    <thead>
+                    <tr>
+                        <th data-field="id">Cuenta</th>
+                        <th data-field="name">Debe</th>
+                        <th data-field="price">Haber</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>Caja</td>
+                        <td>$10,000</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Banco</td>
+                        <td>$7.00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Cuentas por pagar</td>
+                        <td></td>
+                        <td>$70.00</td>
+                    </tr>
+
+                    <tr>
+                        <td> <div class="divider"></div>Total</td>
+                        <td><div class="divider"></div>$7.00</td>
+                        <td><div class="divider"></div>$7.00</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
             </div>
-        </div>
-
-
-
-
-
-
-        <div class="card-panel">
             <div>
-                <h5 class="center-align">Francés</h5>
-                <h6 class="center-align">Balance de comprobación</h6>
-                <h6 class="center-align">Del 1 al 31 de Noviembre</h6>
+                <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
             </div>
 
-            <br>
 
-            <table class="highlight responsive-table">
-                <thead>
-                <tr>
-                    <th data-field="id">Cuenta</th>
-                    <th data-field="name">Debe</th>
-                    <th data-field="price">Haber</th>
-                </tr>
-                </thead>
 
-                <tbody>
-                <tr>
-                    <td>Caja</td>
-                    <td>$10,000</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Banco</td>
-                    <td>$7.00</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Cuentas por pagar</td>
-                    <td></td>
-                    <td>$70.00</td>
-                </tr>
 
-                <tr>
-                    <td> <div class="divider"></div>Total</td>
-                    <td><div class="divider"></div>$7.00</td>
-                    <td><div class="divider"></div>$7.00</td>
-                </tr>
-                </tbody>
-            </table>
         </div>
 
-
-
-        <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
-    </div>
-
+    </main>
 {% endblock %}

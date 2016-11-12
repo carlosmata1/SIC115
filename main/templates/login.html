@@ -8,60 +8,52 @@
 {% block menu %}{% endblock %}
 
 {% block footer %}{% endblock %}
-{% block header %}
+{% block header %}{% endblock %}
 
-    {% block contenido %}
-        <div id="log">
-            <div class="container">
-                <div class="row">
-                    <div class="col s6 " height="400px">
-                        <div class="form ">
-                            <form action="" method="post" > {% csrf_token %}
-                                <h3 class="thisn"></h3>
-                                {{ form.non_field_errors }}
+{% block contenido %}
+    <div id="log">
+        <div class="container">
+            <div class="row">
+                <div class="col s6 ">
+                    <div class="form ">
+                        <form action="" method="post" > {% csrf_token %}
+                            <h3 class="thin"></h3>
 
-                                <div class="row">
-                                    <h1 class="white-text">Iniciar Sesión</h1>
-                                    <h5 class="thin white-text">¡Bienvenido! Ingresa tu nombre de usuario y contraseña. </h5>
-
-                                    <div class="input-field col s10">
-                                        <p>{{ form.username.errors }}</p>
-                                        <i class="material-icons prefix white-text">account_circle</i>
-                                        <label class="active " for="first_name2" >Nombre</label>
-                                        {{ form.username }}
-                                    </div>
+                            <div class="row">
+                                <h1 class="white-text">Iniciar Sesión</h1>
+                                <h5 class="thin white-text">¡Bienvenido! Ingresa tu nombre de usuario y contraseña. </h5>
+                                <div class="input-field col s10">
+                                    <i class="material-icons prefix white-text">account_circle</i>
+                                    {{ form.username }}
+                                    <label class="active " for="first_name2" >Nombre</label>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="input-field col s10">
-                                        <p>{{ form.password.errors }}</p>
-                                        <i class="material-icons prefix white-text">lock_outline</i>
-                                        <label for="id_password">Password</label>
-                                        {{ form.password }}
-                                    </div>
+                            <div class="row">
+                                <div class="input-field col s10">
+                                    <i class="material-icons prefix white-text">lock_outline</i>
+                                    {{ form.password }}
+                                    <label for="password">Password</label>
                                 </div>
+                            </div>
 
-                                <div id="BotonEnviar" class="row">
-                                    <div class="col s4 offset-s3">
-                                        <br>
-                                        <button class="btn waves-effect waves-light #00897b teal darken-1" type="submit" name="action" >Ingresar <i class="material-icons right">send</i>
-                                        </button>
-                                        <br>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                            <div id="BotonEnviar">
+                                <br>
+                                <button class="btn waves-effect waves-light #00897b teal darken-1 right pull-s5" type="submit" name="action" >Ingresar <i class="material-icons right">send</i>
+                                </button>
+                                <br>
+                            </div>
+                        </form>
                     </div>
+                </div>
 
-                    <div class="col s2"></div>
-                    <div class="col s4">
-                        <div id="imagen">
-                            <img class="responsive-img" src="{% static "main/images/LogoSinFondo.png" %}" width="400px">
-                        </div>
+                <div class="col s2"></div>
+                <div class="col s4">
+                    <div id="imagen">
+                        <img class="responsive-img" src="{% static 'main/images/LogoSinFondo.png' %}" width="400px">
                     </div>
                 </div>
             </div>
         </div>
-
-    {% endblock %}
+    </div>
 {% endblock %}

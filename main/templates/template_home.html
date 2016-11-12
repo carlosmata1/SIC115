@@ -38,16 +38,14 @@
     </main>
 {% endblock %}
 
-<main>
-    {% block contenido %}{% endblock %}
-</main>
+{% block contenido %}{% endblock %}
 
 {% block footer %}
     <footer class="page-footer #b71c1c red darken-4">
         <div class="footer-copyright">
             <div class="container thin">
                 AERO 2016
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                <a class="grey-text text-lighten-4 right" href="#">More Links</a>
             </div>
         </div>
     </footer>
@@ -66,11 +64,13 @@
         Materialize.updateTextFields();
         $('.modal-trigger').leanModal() ;
         $('.parallax').parallax();
+        $('select').material_select();
+
     });
 
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
+        selectYears:true // Creates a dropdown of 15 years to control year
     });
 </script>
 </body>
