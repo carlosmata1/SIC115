@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from wxPython._wx import NULL
 
 
 class Puesto(models.Model):
@@ -88,7 +87,7 @@ class Cuenta(models.Model):
     debe = models.DecimalField(max_digits=5, decimal_places=5)
     haber = models.DecimalField(max_digits=5, decimal_places=5)
     saldoFinal = models.DecimalField(max_digits=5, decimal_places=5)
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, null=True, default=NULL)
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, null=True)
 
     def __unicode__(self):
         return self.nombre
