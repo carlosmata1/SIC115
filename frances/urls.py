@@ -33,5 +33,5 @@ urlpatterns = [
     url(r'^estado_capital/', views.estado_capital_view, name="estado_capital"),
     url(r'^estado_resultados/', views.estado_resultados, name="estado_resultados"),
     url(r'^balance_comprobacion/', views.balance_comprobacion, name="balance_comprobacion"),
-    url(r'^libro_diario/', views.libro_diario, name="libro_diario"),
+    url(r'^libro_diario/', views.TransaccionCreateView.as_view(), name="libro_diario"),
 ]

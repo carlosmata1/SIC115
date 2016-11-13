@@ -2,10 +2,12 @@
 
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
 
-from main.forms import LoginForm
+from main.forms import LoginForm, TransaccionForm
+from main.models import Transaccion
 
 
 @login_required(login_url='login')
@@ -47,19 +49,19 @@ def ayuda_view(request):
 
 
 def proveedores_list_view(request):
-    return render(request, 'main/proveedores_list.html', {
+    return render(request, 'main/list_proveedores.html', {
         'titulo': 'Proveedores',
     })
 
 
 def usuarios_list_view(request):
-    return render(request, 'main/usuarios_list.html', {
+    return render(request, 'main/list_usuarios.html', {
         'titulo': 'Usuarios',
     })
 
 
 def empleados_list_view(request):
-    return render(request, 'main/empleados_list.html', {
+    return render(request, 'main/list_empleados.html', {
         'titulo': 'Empleados',
     })
 
@@ -94,7 +96,14 @@ def balance_comprobacion(request):
     })
 
 
-def libro_diario(request):
-    return render(request, 'main/libro_diario.html', {
-        'titulo': 'Libro Diario',
-    })
+# def libro_diario(request):
+#     return render(request, 'main/libro_diario.html', {
+#         'titulo': 'Libro Diario',
+#     })
+
+
+class TransaccionCreateView(CreateView):
+    model = Transaccion
+    template_name = 'main/libro_diario.html'
+    form_class = TransaccionForm
+    success_url = reverse_lazy('libro_diario')
