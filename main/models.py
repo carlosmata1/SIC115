@@ -67,6 +67,12 @@ class TipoTransaccion(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre = models.CharField(max_length=50, null=False, blank=False)
 
+
+class Rubro(models.Model):
+    id = models.IntegerField(editable=False,auto_created=True, primary_key=True)
+    numero=models.IntegerField()
+    nombre=models.CharField(max_length=21, null=False)
+
     def __unicode__(self):
         return self.nombre
 
@@ -88,6 +94,7 @@ class Cuenta(models.Model):
     haber = models.DecimalField(max_digits=5, decimal_places=5)
     saldoFinal = models.DecimalField(max_digits=5, decimal_places=5)
     # proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE, null=True)
+    rubro=models.ForeignKey(Rubro)
 
     def __unicode__(self):
         return self.nombre

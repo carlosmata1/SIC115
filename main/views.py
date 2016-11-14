@@ -6,8 +6,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView, CreateView
 
-from main.forms import LoginForm, TransaccionForm
-from main.models import Transaccion
+from main.forms import LoginForm, TransaccionForm, CuentaForm
+from main.models import Transaccion, Cuenta, TipoCuenta
 
 
 @login_required(login_url='login')
@@ -64,6 +64,45 @@ def empleados_list_view(request):
     return render(request, 'main/list_empleados.html', {
         'titulo': 'Empleados',
     })
+
+
+def cuentas_list_view(request):
+    cuentas=CuentaForm()
+    return render(request,  'main/cuentas_list.html',
+     {'cuenta': cuentas,
+      'titulo':'Cuentas',
+      'activos': Cuenta.objects.filter(tipo=1),
+      'pasivos': Cuenta.objects.filter(tipo=2),
+      'patrimonios': Cuenta.objects.filter(tipo=3),
+      'resultadosA': Cuenta.objects.filter(tipo=4),
+      'ResultadosD': Cuenta.objects.filter(tipo=5),
+      'contraActivos': Cuenta.objects.filter(tipo=6)})
+
+
+def cuenta_nueva(request):
+    cuentas=CuentaForm()
+    cuentaNueva=Cuenta()
+    if request.method=='POST':
+        formulario=CuentaForm(request.POST)
+        if formulario.is_valid():
+            tipo=formulario.cleaned_data["tipo"]
+            cuentaNueva.nombre=formulario.cleaned_data["nombre"]
+            cuentaNueva.tipo=TipoCuenta.objects.get(id=int(tipo))
+
+            cuentaNueva.rubro=formulario.cleaned_data["rubro"]
+            rubro=cuentaNueva.rubro.numero
+            cuentaNueva.codigo=str(tipo)+str(rubro)
+            cuentaNueva.saldoInicial=0
+            cuentaNueva.debe=0
+            cuentaNueva.haber=0
+            cuentaNueva.saldoFinal=0
+
+            cuentaNueva.save()
+            return cuentas_list_view(request)
+        else:
+            return render(request,  'main/cuentas_list.html', {'cuenta': cuentas})
+
+    return render(request,  'main/cuentas_list.html', {'cuenta': cuentas})
 
 
 def ajustes_financieros_view(request):

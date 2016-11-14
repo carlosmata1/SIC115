@@ -1,7 +1,11 @@
 # coding: utf-8
 import time
+
 from django import forms
-from main.models import Transaccion, Empleado, TipoTransaccion, Cuenta
+
+from main.models import Transaccion, Empleado, TipoTransaccion, Cuenta, Rubro
+
+tiposCuentas=((1,'Activo',),(2,'Pasivo',),(3,'Capital',),(4,'Resultado',))
 
 
 class LoginForm(forms.Form):
@@ -12,6 +16,11 @@ class LoginForm(forms.Form):
                                label='password',
                                widget=forms.PasswordInput(attrs={'class': 'validate white-text'}))
 
+
+class CuentaForm(forms.Form):
+    nombre = forms.CharField(required=True,label='Nombre de la cuenta')
+    rubro = forms.ModelChoiceField(required=True,queryset=Rubro.objects.all())
+    tipo = forms.ChoiceField(required=True,choices=tiposCuentas)
 
 class TransaccionForm(forms.ModelForm):
     class Meta:
