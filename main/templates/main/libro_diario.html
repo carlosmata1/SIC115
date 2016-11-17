@@ -4,113 +4,66 @@
 
 {% block contenido %}
     <main>
-        <form>
+        
+
+<div class="card-action">
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Agregar Transaccion</a>
+</div>
+<form action="{% url 'agregar_movimiento' %}" method="POST" >{%csrf_token%}
+                  <label>Digite la cantidad de movimientos involucradas</label>
+                  <input type="number" name="mov" min="2" value="2">
+                   <button type="submit" href="{% url 'agregar_movimiento' %}" class="save btn btn-default">Agregar Movimientos</button>
+                   
+                    </form>
+
+
+    <div id="modal1" class="modal" height="100">
+    <div class="modal-content" >
+    
+{%if agregar%}
+    <form action="{%url 'transaccion_nueva'%}" method="POST">{%csrf_token%}
+
+<h4>Crear Transacción</h4>
+       
             <div class="container">
 
-                <a class="waves-effect waves-light btn"><i class="material-icons left">description</i>Ver transacciones</a>
+            
+                    {{transaccion.as_p}}
+                  
+                      <table>
+                     
+                  <tr data-field="col s7 push-s5">
+              
+                 
+                 <td >{{movimientos.as_table}}</td>
+                   </tr></table>
+                    
+                
+<button type="submit" href="" class="save btn btn-default">Guardar Transaccion</button>
 
+                 </form>{%endif%}
+                  
+                  
+                  
 
-                <div class="card-panel">
-                    <h4 class="thin">Registrar transacción</h4>
-                    <div class="divider"></div>
-
-                    <div class="row">
-                        <div class="input-field col s6">
-                         
-                            <select id="transaccion">
-                                <option value="" selected disabled>Tipo de transacción</option>
-                                <option value="1">Compras</option>
-                                <option value="2">Ventas</option>
-                                <option value="3">Devoluciones</option>
-                            </select>
-                        </div>
-
-                        <div class="input-field col s3">
-                            <label for="proveedores">Proveedores</label>
-                            <select id="proveedores">
-                                <option value="" disabled selected>Proveedores</option>
-                            </select>
-                        </div>
-
-                        <div class="input-field col s3">
-                            <label for="clientes">Clientes</label>
-                            <select id="clientes">
-                                <option value="" disabled selected>Clientes</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input type="date" class="datepicker" id="fecha1" required>
-                            <label for="fecha1">Fecha de transacción</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <input id="comentario" type="text" length="100">
-                            <label for="comentario">Comentario de transacción</label>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <div class="col s5">
-                            <h3 class="flow-text center">Cargar</h3>
-                            <div class="divider"></div>
-
-                            <br>
-                            <select class="">
-                                <option value="" disabled selected>Seleccione una cuenta</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-
-                            <br>
-                            <div class="col s5">
-                                <div class="input-field">
-                                    <label for="monto1">Monto ($)</label>
-                                    <input id="monto1" type="number" min="0">
-                                </div>
-                            </div>
-
-                            <br>
-                        </div>
-
-
-                        <div class="col s5 offset-s2 ">
-                            <h3 class="flow-text center">Abonar</h3>
-                            <div class="divider"></div>
-                            <br>
-                            <select class="">
-                                <option value="" disabled selected>Seleccione una cuenta</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                            </select>
-
-                            <br>
-                            <div class="col s5">
-                                <div class="input-field">
-                                    <label for="monto2">Monto ($)</label>
-                                    <input id="monto2" type="number" min="0">
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <br>
+                  
                         <br>
 
-                        <button class="btn waves-effect waves-light #43a047 green darken-1 right" type="submit" name="action">Registrar
-                            <i class="material-icons left">note_add</i>
-                        </button>
+
+                      
+                        
+
+                       </div>
                     </div>
-                </div>
-            </div>
-        </form>
+                
+     
+      
+
+   
+
+
+</div>
+ 
+</div>
     </main>
 {% endblock %}
