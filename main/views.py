@@ -4,10 +4,13 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
-from models import Cuenta , TipoCuenta,Rubro
-
+from models import Cuenta , TipoCuenta,Rubro,Transaccion,TipoTransaccion,Empleado,Movimiento
+from decimal import Decimal
 from main.forms import LoginForm
-from main.forms import CuentaForm
+from main.forms import CuentaForm 
+from main.forms import TransaccionForm
+from main.forms import MovimientoForm
+from django.forms import formset_factory
 
 @login_required(login_url='login')
 def index_view(request):
@@ -87,7 +90,7 @@ def cuenta_nueva(request):
 
             cuentaNueva.rubro=formulario.cleaned_data["rubro"]
             rubro=cuentaNueva.rubro.numero
-            cuentaNueva.codigo=str(tipo)+str(rubro)
+            cuentaNueva.codigo=str(rubro)+str(Cuenta.objects.count())
             cuentaNueva.saldoInicial=0
             cuentaNueva.debe=0
             cuentaNueva.haber=0
@@ -126,11 +129,84 @@ def estado_resultados(request):
 
 def balance_comprobacion(request):
     return render(request, 'main/balance_comprobacion.html', {
-        'titulo': 'Balance de Comprobación',
+
+
+        'titulo': 'Balance de Comprobación','cuentas':Cuenta.objects.all()
     })
+
+
+def agregar_movimiento(request):
+
+    formulario=TransaccionForm()
+    
+    
+    
+    if request.method=='POST':
+       
+        futura=int(request.POST.get('mov'))
+        movimientos=formset_factory(MovimientoForm,extra=futura)
+        
+        
+            
+    
+    return render(request, 'main/libro_diario.html', {'titulo': 'Libro Diario','movimientos':movimientos,'transaccion':formulario,'agregar':True})
+
+def agregar_Transaccion(request):
+    transaccion=Transaccion()
+    formulario=TransaccionForm(request.POST)
+    movimientoF = formset_factory(MovimientoForm)
+    if request.method=='POST':
+        formulario=TransaccionForm(request.POST)
+        movimientos=movimientoF(request.POST)
+        if formulario.is_valid() & movimientos.is_valid():
+            empleado1=formulario.cleaned_data["empleado"]
+            transaccion=Transaccion.objects.create(empleado=empleado1,monto=formulario.cleaned_data["monto"],tipo=formulario.cleaned_data["tipo"],descripcion=formulario.cleaned_data["descripcion"],fecha=formulario.cleaned_data["fecha"])
+            
+
+            transaccion2=transaccion
+            return guardarMovimientos(request,formulario,movimientos,transaccion2)
+        return render(request, 'main/libro_diario.html',{'transaccion':formulario,'agregar':formulario})
+
+    
 
 
 def libro_diario(request):
+     
+
+
+    transaccion=TransaccionForm()
+
+
     return render(request, 'main/libro_diario.html', {
-        'titulo': 'Libro Diario',
+          'titulo': 'Libro Diario','transaccion':transaccion,'agregar':False
     })
+def guardarMovimientos(request,formulario,movimientos,transaccion):
+    for movimiento in movimientos :
+        movimientoM=Movimiento()
+        movimientoM.cuenta=movimiento.cleaned_data.get('cuenta')
+        movimientoM.debe=False
+        movimientoM.cantidad=movimiento.cleaned_data.get('cantidad')
+        
+        Movimiento.objects.create(cuenta=movimiento.cleaned_data.get('cuenta') ,debe=movimiento.cleaned_data.get('tipo') ,cantidad=movimiento.cleaned_data.get('cantidad') ,transaccion=Transaccion.objects.get(id=Transaccion.objects.count()))
+        cuentaModificar=Cuenta.objects.get(id=movimientoM.cuenta.id)
+        
+        cuentaModificar.save()
+        if movimientoM.debe :
+            cuentaModificar.debe=movimientoM.cantidad+cuentaModificar.debe
+            t=guardarCambioCuenta(cuentaModificar)
+        else:
+            cuentaModificar.haber=movimientoM.cantidad+cuentaModificar.haber
+            t=guardarCambioCuenta(cuentaModificar)
+
+    return render(request, 'main/libro_diario.html',{'transaccion':formulario,'agregar':True})
+
+def guardarCambioCuenta(cuentaModificar):
+    if cuentaModificar.haber>=cuentaModificar.debe :
+        cuentaModificar.saldoFinal=cuentaModificar.haber-cuentaModificar.debe
+        cuentaModificar.acreedor=True
+    else:
+        cuentaModificar.saldoFinal=cuentaModificar.debe-cuentaModificar.haber
+        cuentaModificar.acreedor=False
+    cuentaModificar.save()
+    return 1
+    
