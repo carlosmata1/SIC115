@@ -2,6 +2,7 @@
 
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from django.shortcuts import render, redirect
 from django.views.generic.edit import FormView
 from models import Cuenta , TipoCuenta,Rubro,Transaccion,TipoTransaccion,Empleado,Movimiento
@@ -10,7 +11,9 @@ from main.forms import LoginForm
 from main.forms import CuentaForm 
 from main.forms import TransaccionForm
 from main.forms import MovimientoForm
+from main.forms import EmpleadoFomr
 from django.forms import formset_factory
+
 
 @login_required(login_url='login')
 def index_view(request):
@@ -209,4 +212,22 @@ def guardarCambioCuenta(cuentaModificar):
         cuentaModificar.acreedor=False
     cuentaModificar.save()
     return 1
-    
+
+
+
+def empleado_view(reques):
+    if reques.method == 'POST':
+        form = EmpleadoFomr(reques.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('empleados_list')
+    else:
+        form =EmpleadoFomr()
+
+    return render(reques, 'main/agregarEmpleado.html', {'form':form, 'titulo':'Agregar Empleado'})
+
+
+
+class empleado_list(ListView):
+    model = Empleado
+    template_name = 'main/empleados_list.html '

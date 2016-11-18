@@ -44,3 +44,55 @@ class TransaccionForm(forms.Form):
 			queryset=TipoTransaccion.objects.all())
 	descripcion=forms.CharField(widget=forms.Textarea)
 	fecha=forms.DateField()
+
+
+
+class EmpleadoFomr(forms.ModelForm):
+
+	class Meta:
+		model=Empleado
+
+		fields=[
+			'nombres',
+			'apellidos',
+			'edad',
+			'sexo',
+			'direccion',
+			'telefono',
+			'contacto',
+			'dui',
+			'nit',
+			'afp',
+			'puesto',
+			'activo',
+		]
+		labels={
+			'nombres': 'Nombres',
+			'apellidos':'Apellidos',
+			'edad': 'Edad',
+			'sexo': 'sexo',
+			'direccion':'Direccion',
+			'telefono':'telefono',
+			'contacto':'Contacto',
+			'dui':'DUI',
+			'nit':'NIT',
+			'afp':'AFP',
+			'puesto':'Puesto',
+			'activo':'Activo',
+		}
+		widgets={
+			'nombres': forms.TextInput (attrs={'class':'input-field '}),
+			'apellidos':forms.TextInput (attrs={'class':'input-field '}),
+			'edad':forms.NumberInput(attrs={'class':'input-field '}),
+			'sexo':forms.Select(attrs={'class':'input-field '}),
+			'direccion':forms.TextInput (attrs={'class':'input-field'}),
+			'telefono':forms.NumberInput (attrs={'class':'input-field '}),
+			'contacto':forms.TextInput (attrs={'class':'input-field'}),
+			'dui':forms.TextInput (attrs={'class':'input-field '}),
+			'nit':forms.TextInput (attrs={'class':'input-field '}),
+			'afp':forms.TextInput (attrs={'class':'input-field'}),
+			'puesto':forms.Select(attrs={'class':'input-field'}),
+			'activo':forms.CheckboxSelectMultiple(attrs={'type':'checkbox'}),
+
+		}
+
