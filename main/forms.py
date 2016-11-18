@@ -81,7 +81,7 @@ class EmpleadoFomr(forms.ModelForm):
 			'activo':'Activo',
 		}
 		widgets={
-			'nombres': forms.TextInput (attrs={'class':'input-field '}),
+			'nombres': forms.TextInput (attrs={'class':'input-field col s3'}),
 			'apellidos':forms.TextInput (attrs={'class':'input-field '}),
 			'edad':forms.NumberInput(attrs={'class':'input-field '}),
 			'sexo':forms.Select(attrs={'class':'input-field '}),
@@ -93,6 +93,5 @@ class EmpleadoFomr(forms.ModelForm):
 			'afp':forms.TextInput (attrs={'class':'input-field'}),
 			'puesto':forms.Select(attrs={'class':'input-field'}),
 			'activo':forms.CheckboxSelectMultiple(attrs={'type':'checkbox'}),
-
 		}
 

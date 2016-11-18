@@ -231,3 +231,8 @@ def empleado_view(reques):
 class empleado_list(ListView):
     model = Empleado
     template_name = 'main/empleados_list.html '
+
+
+class planilla(ListView):
+    model = Empleado
+    template_name = 'main/Planilla.html '

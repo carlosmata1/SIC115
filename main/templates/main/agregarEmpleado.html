@@ -13,7 +13,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn waves-effect waves-light #2e7d32 green darken-3" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light #2e7d32 green darken-3" type="submit" name="action">Guardar
             <i class="material-icons right">send</i>
         </button>
         <a class="waves-effect waves-light btn #e53935 red darken-1" href="{% url 'empleados_list' %}"><i class="material-icons right">clear_all</i>Cancelar</a>

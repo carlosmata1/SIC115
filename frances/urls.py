@@ -19,7 +19,7 @@ from django.contrib import admin
 from main import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls, name="admin"),
+    url(r'^admin/', admin.site.urls, name="administracion"),
     url(r'^$', views.index_view, name="index"),
     url(r'^login$', views.ViewLoginForm.as_view(), name="login"),
     url(r'^logout/$', views.logout_view, name="logout"),
@@ -39,4 +39,6 @@ urlpatterns = [
     url(r'^balance_comprobacion/', views.balance_comprobacion, name="balance_comprobacion"),
     url(r'^libro_diario/', views.libro_diario, name="libro_diario"),
     url(r'^agregar_empleado/', views.empleado_view, name="agregar_empleado"),
+    url(r'^planilla/', views.planilla.as_view(), name="planilla"),
+
 ]

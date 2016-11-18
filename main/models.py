@@ -6,7 +6,7 @@ from django.db import models
 class Puesto(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre = models.CharField(max_length=30, null=False)
-    salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=5, null=False)
+    salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     def __str__(self):
         return self.nombre
 
@@ -30,6 +30,7 @@ class Empleado(models.Model):
     afp = models.CharField(max_length=12, null=False)
     puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)
     activo = models.BooleanField()
+
     def __str__(self):
         return self.nombres+" "+self.apellidos
 
