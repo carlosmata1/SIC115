@@ -68,15 +68,16 @@ def empleados_list_view(request):
 
 def cuentas_list_view(request):
     cuentas=CuentaForm()
-    return render(request,  'main/cuentas_list.html',
-     {'cuenta': cuentas,
-      'titulo':'Cuentas',
-      'activos': Cuenta.objects.filter(tipo=1),
-      'pasivos': Cuenta.objects.filter(tipo=2),
-      'patrimonios': Cuenta.objects.filter(tipo=3),
-      'resultadosA': Cuenta.objects.filter(tipo=4),
-      'ResultadosD': Cuenta.objects.filter(tipo=5),
-      'contraActivos': Cuenta.objects.filter(tipo=6)})
+    return render(request,  'main/cuentas_list.html', {
+        'cuenta': cuentas,
+        'titulo': 'Cuentas',
+        'activos': Cuenta.objects.filter(tipo=1),
+        'pasivos': Cuenta.objects.filter(tipo=2),
+        'patrimonios': Cuenta.objects.filter(tipo=3),
+        'resultadosA': Cuenta.objects.filter(tipo=4),
+        'ResultadosD': Cuenta.objects.filter(tipo=5),
+        'contraActivos': Cuenta.objects.filter(tipo=6)
+      })
 
 
 def cuenta_nueva(request):
