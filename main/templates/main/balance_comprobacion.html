@@ -47,29 +47,29 @@
                     </thead>
 
                     <tbody>
+                    
+                    {%for cuenta in cuentas%}
                     <tr>
-                        <td>Caja</td>
-                        <td>$10,000</td>
+                        <td>{{cuenta.nombre}}</td>
+                            {%if cuenta.acreedor%}
                         <td></td>
-                    </tr>
-                    <tr>
-                        <td>Banco</td>
-                        <td>$7.00</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Cuentas por pagar</td>
-                        <td></td>
-                        <td>$70.00</td>
-                    </tr>
+                        <td>{{cuenta.saldoFinal}}</td> </tr>
+                        {%else%}
+                        <td>{{cuenta.saldoFinal}}</td>
+                        <td></td> 
+                        {%endif%}</tr>
+                        {%endfor%}
+                   
+                   
 
                     <tr>
                         <td> <div class="divider"></div>Total</td>
                         <td><div class="divider"></div>$7.00</td>
-                        <td><div class="divider"></div>$7.00</td>
+                        <td><div class="divider"></div></td>
                     </tr>
                     </tbody>
                 </table>
+               
 
 
 

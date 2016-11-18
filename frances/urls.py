@@ -19,7 +19,7 @@ from django.contrib import admin
 from main import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls, name="administracion"),
     url(r'^$', views.index_view, name="index"),
     url(r'^login$', views.ViewLoginForm.as_view(), name="login"),
     url(r'^logout/$', views.logout_view, name="logout"),
@@ -27,13 +27,18 @@ urlpatterns = [
     url(r'^ayuda/', views.ayuda_view, name="ayuda"),
     url(r'^proveedores/', views.proveedores_list_view, name="proveedores_list"),
     url(r'^usuarios/', views.usuarios_list_view, name="usuarios_list"),
-    url(r'^empleados/', views.empleados_list_view, name="empleados_list"),
+    url(r'^empleados/', views.empleado_list.as_view(), name="empleados_list"),
     url(r'^cuentas/', views.cuentas_list_view, name="cuentas_list"),
     url(r'^nuevaCuenta/',views.cuenta_nueva,name='cuenta_nueva'),
+    url(r'^agregar_Movimiento/',views.agregar_movimiento,name='agregar_movimiento'),
+    url(r'^agregar_Transaccion/',views.agregar_Transaccion,name='transaccion_nueva'),
     url(r'^ajustes_financieros/', views.ajustes_financieros_view, name="ajustes_financieros"),
     url(r'^balance/', views.balance_general_view, name="balance_general"),
     url(r'^estado_capital/', views.estado_capital_view, name="estado_capital"),
     url(r'^estado_resultados/', views.estado_resultados, name="estado_resultados"),
     url(r'^balance_comprobacion/', views.balance_comprobacion, name="balance_comprobacion"),
-    url(r'^libro_diario/', views.TransaccionCreateView.as_view(), name="libro_diario"),
+    url(r'^libro_diario/', views.libro_diario, name="libro_diario"),
+    url(r'^agregar_empleado/', views.empleado_view, name="agregar_empleado"),
+    url(r'^planilla/', views.planilla.as_view(), name="planilla"),
+
 ]

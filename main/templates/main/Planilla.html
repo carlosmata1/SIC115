@@ -1,0 +1,54 @@
+{% extends 'template_home.html' %}
+{% load staticfiles %}
+
+{% block titulo %}Planilla{% endblock %}
+
+{% block contenido%}
+
+   <main>
+   <div class="container">
+       <h1>Planilla</h1>
+       <div class="divider"></div>
+       {% if object_list %}
+           <table class="striped centered">
+
+               <thead>
+
+               <tr>
+                   <th data-field="nombre">Nombre</th>
+                   <th data-field="apellidos">Apellidos</th>
+                   <th data-field="cargo">Cargo</th>
+                   <th data-field="SalarioNominal">Salario Nominal</th>
+                   <th data-field="SalarioReal">Salario Real</th>
+
+
+               </tr>
+               </thead>
+               <tbody>
+
+
+               {%for empleado in object_list%}
+                   <tr>
+                       <td>{{empleado.nombres}}</td>
+                       <td>{{empleado.apellidos}}</td>
+                       <td>{{empleado.puesto.nombre}}</td>
+                       <td>{{empleado.puesto.salarioNominalDiario}}</td>
+                       <td>{{empleado.puesto.salarioNominalDiario}}</td>
+                   </tr>
+               {%endfor%}
+
+
+
+               </tbody>
+           </table>
+       {% else %}
+           <h6>No hay empleados</h6>
+       {% endif %}
+
+    </div>
+   </main>
+
+
+
+
+{% endblock %}
