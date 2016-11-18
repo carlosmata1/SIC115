@@ -2,17 +2,17 @@
 
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
-from django.shortcuts import render, redirect
-from django.views.generic.edit import FormView
-from models import Cuenta , TipoCuenta,Rubro,Transaccion,TipoTransaccion,Empleado,Movimiento
-from decimal import Decimal
-from main.forms import LoginForm
-from main.forms import CuentaForm
-from main.forms import TransaccionForm
-from main.forms import MovimientoForm
-from main.forms import EmpleadoFomr
 from django.forms import formset_factory
+from django.shortcuts import render, redirect
+from django.views.generic import ListView
+from django.views.generic.edit import FormView
+
+from main.forms import CuentaForm
+from main.forms import EmpleadoFomr
+from main.forms import LoginForm
+from main.forms import MovimientoForm
+from main.forms import TransaccionForm
+from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento
 
 
 @login_required(login_url='login')
@@ -74,28 +74,29 @@ def empleados_list_view(request):
 def cuentas_list_view(request):
     cuentas=CuentaForm()
     return render(request,  'main/cuentas_list.html',
-     {'cuenta': cuentas,'titulo':'Cuentas',
-     'activos':Cuenta.objects.filter(tipo=1),
-     'pasivos':Cuenta.objects.filter(tipo=2),
-     'patrimonios':Cuenta.objects.filter(tipo=3),
-     'resultadosA':Cuenta.objects.filter(tipo=4),
-     'ResultadosD':Cuenta.objects.filter(tipo=5),
-     'contraActivos':Cuenta.objects.filter(tipo=6)})
+                  {'cuenta': cuentas,'titulo':'Cuentas',
+                   'activos': Cuenta.objects.filter(tipo=1),
+                   'pasivos': Cuenta.objects.filter(tipo=2),
+                   'patrimonios': Cuenta.objects.filter(tipo=3),
+                   'resultadosA': Cuenta.objects.filter(tipo=4),
+                   'ResultadosD': Cuenta.objects.filter(tipo=5),
+                   'contraActivos': Cuenta.objects.filter(tipo=6)})
 
 
 def cuenta_nueva(request):
     cuentas=CuentaForm()
     cuentaNueva=Cuenta()
-    if request.method=='POST':
+
+    if request.method == 'POST':
         formulario=CuentaForm(request.POST)
         if formulario.is_valid():
             tipo=formulario.cleaned_data["tipo"]
-            cuentaNueva.nombre=formulario.cleaned_data["nombre"]
-            cuentaNueva.tipo=TipoCuenta.objects.get(id=int(tipo))
+            cuentaNueva.nombre = formulario.cleaned_data["nombre"]
+            cuentaNueva.tipo = TipoCuenta.objects.get(id=int(tipo))
 
-            cuentaNueva.rubro=formulario.cleaned_data["rubro"]
+            cuentaNueva.rubro = formulario.cleaned_data["rubro"]
             rubro=cuentaNueva.rubro.numero
-            cuentaNueva.codigo=str(rubro)+str(Cuenta.objects.count())
+            cuentaNueva.codigo=str(tipo)+str(rubro)
             cuentaNueva.saldoInicial=0
             cuentaNueva.debe=0
             cuentaNueva.haber=0
@@ -145,50 +146,39 @@ def agregar_movimiento(request):
 
     formulario=TransaccionForm()
 
-
-
     if request.method=='POST':
-
         futura=int(request.POST.get('mov'))
-        movimientos=formset_factory(MovimientoForm,extra=futura)
+        movimientos=formset_factory(MovimientoForm, extra=futura)
 
-
-
-
-    return render(request, 'main/libro_diario.html', {'titulo': 'Libro Diario','movimientos':movimientos,'transaccion':formulario,'agregar':True})
+        return render(request, 'main/libro_diario.html', {'titulo': 'Libro Diario','movimientos':movimientos,'transaccion':formulario,'agregar':True})
 
 def agregar_Transaccion(request):
-    transaccion=Transaccion()
-    formulario=TransaccionForm(request.POST)
     movimientoF = formset_factory(MovimientoForm)
-    if request.method=='POST':
-        formulario=TransaccionForm(request.POST)
-        movimientos=movimientoF(request.POST)
+
+    if request.method == 'POST':
+        formulario = TransaccionForm(request.POST)
+        movimientos = movimientoF(request.POST)
+
         if formulario.is_valid() & movimientos.is_valid():
-            empleado1=formulario.cleaned_data["empleado"]
-            transaccion=Transaccion.objects.create(empleado=empleado1,monto=formulario.cleaned_data["monto"],tipo=formulario.cleaned_data["tipo"],descripcion=formulario.cleaned_data["descripcion"],fecha=formulario.cleaned_data["fecha"])
+            empleado1 = formulario.cleaned_data["empleado"]
+            transaccion = Transaccion.objects.create(empleado=empleado1, monto=formulario.cleaned_data["monto"], tipo=formulario.cleaned_data["tipo"], descripcion=formulario.cleaned_data["descripcion"], fecha=formulario.cleaned_data["fecha"])
 
-
-            transaccion2=transaccion
+            transaccion2 = transaccion
             return guardarMovimientos(request,formulario,movimientos,transaccion2)
-        return render(request, 'main/libro_diario.html',{'transaccion':formulario,'agregar':formulario})
-
-
+        return render(request, 'main/libro_diario.html', {'transaccion': formulario, 'agregar': formulario})
 
 
 def libro_diario(request):
-
-
-
-    transaccion=TransaccionForm()
-
+    transaccion = TransaccionForm()
 
     return render(request, 'main/libro_diario.html', {
-          'titulo': 'Libro Diario','transaccion':transaccion,'agregar':False
+        'titulo': 'Libro Diario', 'transaccion': transaccion, 'agregar': False
     })
+
+
 def guardarMovimientos(request,formulario,movimientos,transaccion):
-    for movimiento in movimientos :
-        movimientoM=Movimiento()
+    for movimiento in movimientos:
+        movimientoM = Movimiento()
         movimientoM.cuenta=movimiento.cleaned_data.get('cuenta')
         movimientoM.debe=False
         movimientoM.cantidad=movimiento.cleaned_data.get('cantidad')
@@ -198,22 +188,23 @@ def guardarMovimientos(request,formulario,movimientos,transaccion):
 
         cuentaModificar.save()
         if movimientoM.debe :
-            cuentaModificar.debe=movimientoM.cantidad+cuentaModificar.debe
+            cuentaModificar.debe = movimientoM.cantidad+cuentaModificar.debe
             t=guardarCambioCuenta(cuentaModificar)
         else:
-            cuentaModificar.haber=movimientoM.cantidad+cuentaModificar.haber
+            cuentaModificar.haber = movimientoM.cantidad+cuentaModificar.haber
             t=guardarCambioCuenta(cuentaModificar)
 
     return render(request, 'main/libro_diario.html',{'transaccion':formulario,'agregar':True})
 
-def guardarCambioCuenta(cuentaModificar):
-    if cuentaModificar.haber>=cuentaModificar.debe :
-        cuentaModificar.saldoFinal=cuentaModificar.haber-cuentaModificar.debe
-        cuentaModificar.acreedor=True
+
+def guardarCambioCuenta(cuenta_modificar):
+    if cuenta_modificar.haber>=cuenta_modificar.debe :
+        cuenta_modificar.saldoFinal= cuenta_modificar.haber - cuenta_modificar.debe
+        cuenta_modificar.acreedor=True
     else:
-        cuentaModificar.saldoFinal=cuentaModificar.debe-cuentaModificar.haber
-        cuentaModificar.acreedor=False
-    cuentaModificar.save()
+        cuenta_modificar.saldoFinal= cuenta_modificar.debe - cuenta_modificar.haber
+        cuenta_modificar.acreedor=False
+    cuenta_modificar.save()
     return 1
 
 
@@ -233,9 +224,9 @@ def empleado_view(reques):
 
 class empleado_list(ListView):
     model = Empleado
-    template_name = 'main/empleados_list.html '
+    template_name = 'main/list_empleados.html'
 
 
 class planilla(ListView):
     model = Empleado
-    template_name = 'main/Planilla.html '
+    template_name = 'main/Planilla.html'
