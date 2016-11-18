@@ -18,7 +18,7 @@
                     <label for="fecha2">Fcha de finalizacion</label>
                 </div>
                 <div class="input-field col s4">
-                <a class="waves-effect waves-light btn"><i class="material-icons left">subtitles</i>Crear Informe</a>
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">subtitles</i>Crear Informe</a>
                 </div>
 
             </div>
@@ -47,20 +47,21 @@
                     </thead>
 
                     <tbody>
-                    
+
                     {%for cuenta in cuentas%}
-                    <tr>
-                        <td>{{cuenta.nombre}}</td>
+                        <tr>
+                            <td>{{cuenta.nombre}}</td>
                             {%if cuenta.acreedor%}
-                        <td></td>
-                        <td>{{cuenta.saldoFinal}}</td> </tr>
-                        {%else%}
-                        <td>{{cuenta.saldoFinal}}</td>
-                        <td></td> 
-                        {%endif%}</tr>
-                        {%endfor%}
-                   
-                   
+                                <td></td>
+                                <td>{{cuenta.saldoFinal}}</td>
+                            {%else%}
+                                <td>{{cuenta.saldoFinal}}</td>
+                                <td></td>
+                            {%endif%}
+                        </tr>
+                    {%endfor%}
+
+
 
                     <tr>
                         <td> <div class="divider"></div>Total</td>
@@ -69,7 +70,7 @@
                     </tr>
                     </tbody>
                 </table>
-               
+
 
 
 

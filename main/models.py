@@ -6,9 +6,11 @@ from django.db import models
 class Puesto(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre = models.CharField(max_length=30, null=False)
-    salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+    salarioNominalDiario = models.FloatField(default=0.0, null=False)
+
     def __str__(self):
         return self.nombre
+
 
 # Create your models here.
 class Empleado(models.Model):
@@ -52,38 +54,44 @@ class Proveedor(models.Model):
 class TipoTransaccion(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre = models.CharField(max_length=49, null=False)
+
     def __str__(self):
         return self.nombre
 
 
 class Rubro(models.Model):
-    id = models.IntegerField(editable=False,auto_created=True, primary_key=True)
+    id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     numero=models.IntegerField()
-    nombre=models.CharField(max_length=21, null=False)    
+    nombre=models.CharField(max_length=21, null=False)
+
     def __unicode__(self):
         return self.nombre
-        
+
 
 class TipoCuenta(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
-    codigo=models.CharField(max_length=5,null=False)
+    codigo=models.CharField(max_length=5, null=False, default='111')
     nombre = models.CharField(max_length=50, null=False)
+
     def __str__(self):
         return self.nombre
 
+
 class Cuenta(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
-    saldoInicial = models.DecimalField(max_digits=20, decimal_places=2)
+    saldoInicial = models.FloatField(default=0.0)
     nombre=models.CharField(max_length=50,  null=False)
     tipo=models.ForeignKey(TipoCuenta, null=False)
-    debe = models.DecimalField(max_digits=20, decimal_places=2)
-    haber = models.DecimalField(max_digits=20, decimal_places=2)
-    saldoFinal = models.DecimalField(max_digits=20, decimal_places=2)
-    codigo= models.CharField(max_length=5, null=False)
+    debe = models.FloatField(default=0.0)
+    haber = models.FloatField(default=0.0)
+    saldoFinal = models.FloatField(0.0)
+    codigo= models.CharField(max_length=5, null=False, default=1)
     acreedor=models.BooleanField(default=True)
-    rubro=models.ForeignKey(Rubro,null=False)
+    rubro=models.ForeignKey(Rubro, null=False)
+
     def __str__(self):
         return self.nombre
+
 
 class Cliente(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
@@ -94,7 +102,7 @@ class Cliente(models.Model):
 class Inventario(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     descripcion = models.TextField(max_length=100, null=False)
-    valor = models.DecimalField(max_digits=5, decimal_places=5)
+    valor = models.FloatField(default=0.0)
 
 
 class Transaccion(models.Model):
@@ -102,23 +110,28 @@ class Transaccion(models.Model):
     fecha = models.DateField()
     empleado = models.ForeignKey(Empleado, null=False)
     tipo = models.ForeignKey(TipoTransaccion, null=False)
-    descripcion=models.TextField(max_length=10,null=True)
-    monto = models.DecimalField(max_digits=5,decimal_places=2)
+    descripcion=models.TextField(max_length=10, null=True)
+    monto = models.FloatField(default=0.0)
+
     def __str__(self):
         return str(self.id)
+
+
 class Movimiento(models.Model):
-    id=models.IntegerField(editable=False,auto_created=True,primary_key=True)
+    id=models.IntegerField(editable=False, auto_created=True,primary_key=True)
     transaccion=models.ForeignKey(Transaccion, null=False)
-    cuenta=models.ForeignKey(Cuenta,null=False)
+    cuenta=models.ForeignKey(Cuenta, null=False)
     debe=models.BooleanField()
-    cantidad=models.DecimalField(max_digits=10,decimal_places=5,null=True)
+    cantidad=models.FloatField(default=0.0, null=True)
+
     def __str__(self):
         return str(self.cantidad)
 
 
-class prestacion(models.Model):
+class Prestacion(models.Model):
     id=models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre=models.CharField(max_length=100, null=False)
-    porcentage= models.DecimalField(max_digits=6,decimal_places=3)
+    porcentage= models.FloatField(default=0.0)
+
     def __str__(self):
         return self.nombre

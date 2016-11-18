@@ -4,44 +4,43 @@
 
 {% block contenido %}
     <main>
-        
-
-<div class="container">
 
 
-    <form action="{% url 'agregar_movimiento' %}" method="POST" >{%csrf_token%}
-                  <h5>Cantidad de movimientos involucrados</h5>
-                  <input type="number" name="mov" min="2" placeholder="Dijite el numero de cuentas a usar"  required>
-                   <button type="submit" href="{% url 'agregar_movimiento' %}" class="save btn btn-default">Agregar Movimientos</button>
-    </form>
-
-    <br>
-    <br>
-    <br>
-    <a class="waves-effect waves-light btn modal-trigger #2e7d32 green " href="#modal1">Agregar Transaccion</a>
+        <div class="container">
 
 
-    <div id="modal1" class="modal" height="100">
-    <div class="modal-content" >
-    
-        {%if agregar%}
-             <form action="{%url 'transaccion_nueva'%}" method="POST">{%csrf_token%}
-                <h4>Crear Transacción</h4>
-                <div class="container">
-                    {{transaccion.as_p}}
-                <table>
-                  <tr data-field="col s7 push-s5">
+            <form action="{% url 'agregar_movimiento' %}" method="POST" >{%csrf_token%}
+                <h5>Cantidad de movimientos involucrados</h5>
+                <input type="number" name="mov" min="2" placeholder="Dijite el numero de cuentas a usar"  required>
+                <button type="submit" href="{% url 'agregar_movimiento' %}" class="save btn btn-default">Agregar Movimientos</button>
+            </form>
 
-                 <td >{{movimientos.as_table}}</td>
-                   </tr></table>
-            <button type="submit" href="" class="save btn btn-default">Guardar Transaccion</button>
-
-    </form>{%endif%}
+            <br>
+            <br>
+            <br>
+            <a class="waves-effect waves-light btn modal-trigger #2e7d32 green " href="#modal1">Agregar Transaccion</a>
 
 
-    </div>
-    </div>
-</div>
+            <div id="modal1" class="modal" height="100">
+                <div class="modal-content" >
+
+                    {%if agregar%}
+                        <form action="{%url 'transaccion_nueva'%}" method="POST">{%csrf_token%}
+                            <h4>Crear Transacción</h4>
+                            <div class="container">
+                                {{transaccion.as_p}}
+                                <table>
+                                    <tr data-field="col s7 push-s5">
+
+                                        <td >{{movimientos.as_table}}</td>
+                                    </tr></table>
+                                <button type="submit" href="" class="save btn btn-default">Guardar Transaccion</button>
+                            </div>
+                        </form>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
 
 
     </main>
