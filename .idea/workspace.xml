@@ -1023,7 +1023,7 @@
       <workItem from="1477953156046" duration="5096000" />
       <workItem from="1478214027671" duration="4743000" />
       <workItem from="1479408606935" duration="23945000" />
-      <workItem from="1479485606621" duration="4927000" />
+      <workItem from="1479485606621" duration="5317000" />
     </task>
     <task id="LOCAL-00001" summary="Commit inicial. El login está funcional, pero la página &quot;acerca de&quot; no está completa">
       <created>1477889122970</created>
@@ -1127,7 +1127,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85405000" />
+    <option name="totallyTimeSpent" value="85795000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
