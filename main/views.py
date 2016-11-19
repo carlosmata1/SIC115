@@ -8,7 +8,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import FormView
 
 from main.forms import CuentaForm
-from main.forms import EmpleadoFomr
+from main.forms import EmpleadoForm
 from main.forms import LoginForm
 from main.forms import MovimientoForm
 from main.forms import TransaccionForm
@@ -151,6 +151,8 @@ def agregar_movimiento(request):
         movimientos=formset_factory(MovimientoForm, extra=futura)
 
         return render(request, 'main/libro_diario.html', {'titulo': 'Libro Diario','movimientos':movimientos,'transaccion':formulario,'agregar':True})
+    elif request.method == 'GET':
+        return render(request, 'main/libro_diario.html')
 
 def agregar_Transaccion(request):
     movimientoF = formset_factory(MovimientoForm)
@@ -211,12 +213,12 @@ def guardarCambioCuenta(cuenta_modificar):
 
 def empleado_view(reques):
     if reques.method == 'POST':
-        form = EmpleadoFomr(reques.POST)
+        form = EmpleadoForm(reques.POST)
         if form.is_valid():
             form.save()
-        return redirect('empleados_list')
+            return redirect('empleados_list')
     else:
-        form =EmpleadoFomr()
+        form =EmpleadoForm()
 
     return render(reques, 'main/agregarEmpleado.html', {'form':form, 'titulo':'Agregar Empleado'})
 

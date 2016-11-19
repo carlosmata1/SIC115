@@ -1,5 +1,8 @@
+# coding: utf-8
 import datetime
 from django import forms
+from django.core.exceptions import ValidationError
+
 from models import Cuenta,Rubro,Transaccion,Empleado,TipoTransaccion
 
 tiposCuentas=((1, 'Activo',), (2, 'Pasivo',), (3, 'Capital',),(4, 'Resultado',))
@@ -50,7 +53,7 @@ class TransaccionForm(forms.Form):
 
 
 
-class EmpleadoFomr(forms.ModelForm):
+class EmpleadoForm(forms.ModelForm):
 
     class Meta:
         model=Empleado
@@ -73,9 +76,9 @@ class EmpleadoFomr(forms.ModelForm):
             'nombres': 'Nombres',
             'apellidos':'Apellidos',
             'edad': 'Edad',
-            'sexo': 'sexo',
+            'sexo': 'Sexo',
             'direccion':'Direccion',
-            'telefono':'telefono',
+            'telefono':'Teléfono',
             'contacto':'Contacto',
             'dui':'DUI',
             'nit':'NIT',
@@ -98,3 +101,10 @@ class EmpleadoFomr(forms.ModelForm):
             'activo':forms.CheckboxSelectMultiple(attrs={'type':'checkbox'}),
         }
 
+    def clean_nombres(self):
+        nombres = self.cleaned_data['nombres']
+
+        if not (nombres.isalpha()):
+            raise ValidationError("Los nombres no deben contener números")
+
+        return nombres
