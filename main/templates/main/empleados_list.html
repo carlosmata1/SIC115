@@ -5,66 +5,55 @@
 {% block titulo %}Empleados{% endblock %}
 
 {% block contenido %}
-    <div class="row">
-        <div class="col m9 offset-m1">
-            <ul class="collection">
-                <li class="collection-item dismissable"><div>Daniel Alejandro Díaz Chica<a href="#" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
-                <li class="collection-item dismissable"><div>Juan José González Murcia<a href="#" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
-                <li class="collection-item dismissable"><div>Jorge Otoniel Rodríguez Avalos<a href="#" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
-                <li class="collection-item dismissable"><div>Carlos Mata<a href="#" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
-                <li class="collection-item dismissable"><div>Luis Alejandro Alas González<a href="#" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
-                <li class="collection-item dismissable"><div>Niña Mari XD<a href="#" class="secondary-content"><i class="material-icons">settings</i></a></div></li>
-            </ul>
+    <main>
+        <div class="container">
+
+        <h1 >Empleados</h1>
+
+            <a class="waves-effect waves-light btn #2e7d32 green darken-3"   href="{% url 'agregar_empleado' %}"><i class="material-icons right">add_circle</i>Agregar</a>
+            <a class="waves-effect waves-light btn #0d47a1 blue darken-4"   ><i class="material-icons right">build</i>administrar</a>
+            <a class="waves-effect waves-light btn" href="{% url 'planilla' %}"><i class="material-icons right">playlist_add_check</i>Planilla</a>
+        <br>
+        <br>
+
+
+            <h5>Lista de Empleados</h5>
+            <div class="divider"></div>
+            {% if object_list %}
+            <table class="striped centered">
+
+                <thead>
+
+                <tr>
+                    <th data-field="nombre">Nombre</th>
+                    <th data-field="apellidos">Apellidos</th>
+                    <th data-field="cargo">Cargo</th>
+                    <th data-field="numero">Numero</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                {%for empleado in object_list%}
+                    <tr>
+                    <td>{{empleado.nombres}}</td>
+                    <td>{{empleado.apellidos}}</td>
+                    <td>{{empleado.puesto.nombre}}</td>
+                    <td>{{empleado.telefono}}</td>
+                    </tr>
+                {%endfor%}
+
+
+
+                </tbody>
+            </table>
+            {% else %}
+                <h6>No hay empleados</h6>
+            {% endif %}
+
         </div>
-    </div>
 
-    <!--Tarjetas -->
-    <div class="row">
-
-        <div class="col m3 offset-m1">
-
-            <div class="card">
-                <div class="card-image">
-                    <img src="{% static 'main/images/Hipster.jpg' %}">
-                    <span class="card-title">Agregar Empleado</span>
-                </div>
-                <div class="card-content">
-                    <p>Agregue los empleados</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">Agregar Empleado</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col m3">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{% static 'main/images/Hipster.jpg' %}">
-                    <span class="card-title">Agregar Empleado</span>
-                </div>
-                <div class="card-content">
-                    <p>Agregue los empleados</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">Agregar Empleado</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col m3">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{% static 'main/images/Hipster.jpg' %}">
-                    <span class="card-title">Agregar Empleado</span>
-                </div>
-                <div class="card-content">
-                    <p>Agregue los empleados</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">Agregar Empleado</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    </main>
 {% endblock %}

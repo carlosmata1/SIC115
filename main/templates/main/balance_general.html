@@ -3,154 +3,177 @@
 {% block titulo %}Balance General{% endblock %}
 
 {% block contenido %}
-    <div class="container">
-        <div class="card-panel">
-            <div>
-                <h5 class="center-align">Francés</h5>
-                <h6 class="center-align">Balance General</h6>
-                <h6 class="center-align">Del 1 al 30 de Noviembre</h6>
-            </div>
-            <br>
+    <main>
+        <div class="container">
+            <div class="card-panel">
+                <div>
+                    <h5 class="center-align">Francés</h5>
+                    <h6 class="center-align">Balance General</h6>
+                    <h6 class="center-align">Del 1 al 30 de Noviembre</h6>
+                </div>
+                <br>
 
 
-            <!--Tabla Activos -->
-            <div class="row">
-                <div class="col s5 push-s1">
-                    <table class="highlight">
-                        <thead>
-                        <tr>
-                            <th data-field="id">Activos</th>
-                            <th data-field="name">Debe</th>
-                            <th data-field="price">Haber</th>
-                        </tr>
-                        </thead>
+                <!--Tabla Activos -->
+                <div class="row">
+                    <div class="col s5 push-s1">
+                        <table id="activos" class="highlight">
+                            <thead>
+                            <tr>
+                                <th data-field="id">Activos</th>
+                                <th data-field="name">Debe</th>
+                                <th data-field="price">Haber</th>
+                            </tr>
+                            </thead>
 
-                        <tbody>
-                        <tr>
-                            <td>Caja</td>
-                            <td>$29,510</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Inventario</td>
-                            <td>$1,200</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Seguro</td>
-                            <td>$7.00</td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            <tbody>
+                            {%for cuenta in activos%}
+                    <tr>
+                        <td>{{cuenta.nombre}}</td>
+                            {%if cuenta.acreedor%}
+                        <td></td>
+                        <td>{{cuenta.saldoFinal}}</td> </tr>
+                        {%else%}
+                        <td>{{cuenta.saldoFinal}}</td>
+                        <td></td> 
+                        {%endif%}</tr>
+                        {%endfor%}
+                   
+                           
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--Final tabla Activos -->
+
+                    <!--Tabla Pasivos -->
+                    <div class="col s5 push-s1">
+                        <table id="pasivos" class="highlight">
+                            <thead>
+                            <tr>
+                                <th data-field="id">Pasivos</th>
+                                <th data-field="name">Debe</th>
+                                <th data-field="price">Haber</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {%for pasivo in pasivos%}
+                            <tr>
+                                <td>{{pasivo.nombre}}</td>
+                                {%if pasivo.acreedor%}
+                                <td></td>
+                                <td>{{pasivo.saldoFinal}}</td>
+                                {%else%}
+                                <td>{{pasico.saldoFinal}}</td>
+                                <td></td>
+                                {%endif%}
+                            </tr>
+                            {%endfor%}
+                            
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <!--Final tabla Activos -->
+                <div  class="row">
+                    <div class="col s5 offset-s6">
+                        <table id="patrimonios" class="highlight">
+                            <thead>
+                            <tr>
+                                <th data-field="id">Patrimonio</th>
+                                <th data-field="name">Debe</th>
+                                <th data-field="price">Haber</th>
+                            </tr>
+                            </thead>
 
-                <!--Tabla Pasivos -->
-                <div class="col s5 push-s1">
-                    <table class="highlight">
-                        <thead>
-                        <tr>
-                            <th data-field="id">Pasivos</th>
-                            <th data-field="name">Debe</th>
-                            <th data-field="price">Haber</th>
-                        </tr>
-                        </thead>
+                            <tbody>
+                            {%for patrimonio in patrimonios%}
+                            <tr>
+                            
+                                <td>{{patrimonio.nombre}}</td>
+                            {%if patrimonio.acreedor%}
+                                <td></td>
+                                <td>{{patrimonio.saldoFinal}}</td>
+                                {%else%}
+                                <td>{{patrimonio.saldoFinal}}</td>
+                                <td></td>
+                            {%endif%}
+                            </tr>
+                            {%endfor%}
+                           
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!--Fin tabla Pasivos-->
 
-                        <tbody>
-                        <tr>
-                            <td>Cuentas Por Pagar</td>
-                            <td></td>
-                            <td>$13,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col s5 push-s1">
+                        <table id="totalactivos" class="highlight striped">
+                            <thead>
+                            <tr>
+                                <!--<th data-field="id">Total Activos</th>-->
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>Total Activos</td>
+                                <td>______</td>
+                                <td id="totalA"></td>
+                                <td>_____</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col s5 push-s1">
+                        <table class="totalParticipantes" class="highlight striped">
+                            <thead>
+                            <tr>
+                                <!--<th data-field="id">Total Participaciones</th>-->
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>Total Participaciones</td>
+                                <td>______</td>
+                                <td id="totalP"></td>
+                                <td>______</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-            </div>
+            </div> <!--Fin card panel-->
+            <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
 
-            <div class="row">
-                <div class="col s5 offset-s6">
-                    <table class="highlight">
-                        <thead>
-                        <tr>
-                            <th data-field="id">Patrimonio</th>
-                            <th data-field="name">Debe</th>
-                            <th data-field="price">Haber</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                            <td>Inversion Inicial</td>
-                            <td></td>
-                            <td>$13,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div> <!--Fin tabla Pasivos-->
-
-            <div class="row">
-                <div class="col s5 push-s1">
-                    <table class="highlight striped">
-                        <thead>
-                        <tr>
-                            <!--<th data-field="id">Total Activos</th>-->
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                            <td>Total Activos</td>
-                            <td>$13,000</td>
-                            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="col s5 push-s1">
-                    <table class="highlight striped">
-                        <thead>
-                        <tr>
-                            <!--<th data-field="id">Total Participaciones</th>-->
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                            <td>Total Participaciones</td>
-                            <td></td>
-                            <td>$13,000</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div> <!--Fin card panel-->
-        <a class="waves-effect waves-light btn right #d50000 red accent-4"><i class="material-icons left">picture_as_pdf</i>Exportar</a>
-
-    </div> <!--Fin del container-->
+        </div> <!--Fin del container-->
+    </main>
 {% endblock %}
+{% block javascript%}
+
+var total=0;
+var total1=0;
+var total2=0
+
+$('#activos tbody tr').each(function(){
+total+= parseInt($(this).find('td').eq(1).text()||0,10)}
+)
+    
+$("#totalA").html(total);
+
+
+$('#pasivos tbody tr').each(function(){
+total1+= parseInt($(this).find('td').eq(2).text()||0,10)}
+)
+
+
+$('#patrimonios tbody tr').each(function(){
+total2+= parseInt($(this).find('td').eq(2).text()||0,10)}
+)
+totalP=total1+total2;
+$("#totalP").html(totalP);
+{%endblock%}
