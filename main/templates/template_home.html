@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     {% load staticfiles %}
 
+    <script src="{% static 'main/js/Chart.js' %}"></script>
+
     <link rel="shortcut icon" href="{% static 'main/images/frances.ico' %}">
     <!--Import Google Icon Font-->
     <link href="{% static 'main/css/icons.css' %}" rel="stylesheet">
@@ -19,6 +21,14 @@
     {% endblock %}
 
     <title>{{ titulo }}</title>
+
+    <style rel="stylesheet">
+        /* TEMPLATE STYLES */
+
+       p{
+           text-align: justify;
+       }
+    </style>
 </head>
 <body>
 
@@ -56,6 +66,8 @@
 <script src="{% static 'main/js/jquery-3.1.0.js' %}"></script>
 <script src="{% static 'main/js/materialize.min.js' %}"></script>
 <script src="{% static 'main/js/init.js' %}"></script>
+
+
 
 <script>
     $(document).ready(function(){

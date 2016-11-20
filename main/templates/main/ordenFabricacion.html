@@ -1,0 +1,76 @@
+{% extends 'template_home.html' %}
+
+{% load staticfiles %}
+
+{% block titulo %}Ordenes{% endblock %}
+
+{% block contenido %}
+
+    <main>
+        <div class="container">
+
+
+            <h1>Ordenes de fabricación</h1>
+
+            <a class="waves-effect waves-light btn #2e7d32 green darken-3"   href=""><i class="material-icons right">add_circle</i>Agregar</a>
+
+            <br>
+            <br>
+
+
+            <div class="divider"></div>
+            {% if object_list %}
+                <table class="striped centered responsive-table">
+
+                    <thead>
+
+                    <tr>
+                        <th data-field=" numero">No orden</th>
+                        <th data-field="material">Material</th>
+                        <th data-field="canridad">Cantidad</th>
+                        <th data-field="costoUnitario">Costo Unitario</th>
+                        <th data-field="total">Total</th>
+                        <th data-field="empleado">Empleado</th>
+                        <th data-field="horas">#Horas</th>
+                        <th data-field="costohoras">Costo/hora</th>
+                        <th data-field="totalMO">Total MOD</th>
+                        <th data-field="CIF">CIF</th>
+                        <th data-field="importe">Impoprte CIF</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    {%for orden in object_list%}
+                        <tr>
+                            <td>{{orden.numOrden}}</td>
+                            <td>{{orden.materal}}</td>
+                            <td>{{orden.catidadMP}}</td>
+                            <td>{{orden.costoUnitarioMP}}</td>
+                            <td>{{orden.totalMP}}</td>
+                            <td>{{orden.obrero.nombres}}</td>
+                            <td>{{orden.numHoras}}</td>
+                            <td>{{orden.costoHora}}</td>
+                            <td>{{orden.totalMOD}}</td>
+                            <td>{{orden.tasaCIF}}</td>
+                            <td>{{orden.importe}}</td>
+
+
+
+                        </tr>
+                    {%endfor%}
+
+
+
+                    </tbody>
+                </table>
+            {% else %}
+                <h6>No hay Ordenes</h6>
+            {% endif %}
+
+        </div>
+
+    </main>
+
+{% endblock %}

@@ -36,6 +36,9 @@ class Empleado(models.Model):
     def __str__(self):
         return self.nombres+" "+self.apellidos
 
+    def salReal(self):
+        return (self.puesto.salarioNominalDiario*7)/5.5
+
 
 class Usuario(models.Model):
     id = models.TextField(max_length=25, primary_key=True, auto_created=False, editable=True)
@@ -92,6 +95,9 @@ class Cuenta(models.Model):
     def __str__(self):
         return self.nombre
 
+    def saldoF(self):
+        return self.haber-self.debe
+
 
 class Cliente(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
@@ -132,6 +138,68 @@ class Prestacion(models.Model):
     id=models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre=models.CharField(max_length=100, null=False)
     porcentage= models.FloatField(default=0.0)
+
+    def __str__(self):
+        return self.nombre
+
+
+class ordenDeFabricacion(models.Model):
+    numOrden=models.IntegerField(editable=False, auto_created=True, primary_key=True, unique=True)
+    fechaExpedicion=models.DateField
+    fechaRequerida=models.DateField
+    materal=models.CharField(max_length=100, null=False)
+    catidadMP=models.FloatField(default=0.0)
+    costoUnitarioMP=models.FloatField(default=0.0)
+    obrero=models.ForeignKey(Empleado, null=False)
+    numHoras=models.IntegerField()
+    costoHora=models.FloatField(default=0.0)
+    tasaCIF=models.FloatField(default=0.0)
+
+
+    def totalMP(self):
+        return self.catidadMP*self.costoUnitarioMP
+
+    def totalMOD(self):
+        return self.numHoras*self.costoHora
+
+    def importe(self):
+        return (self.catidadMP*self.costoUnitarioMP)*self.tasaCIF
+
+
+
+
+class producto(models.Model):
+    numProducto=models.IntegerField(editable=False, auto_created=True, primary_key=True, unique=True)
+    nombre=models.CharField(max_length=50, null=False)
+    ordenDeFabricacion=models.ForeignKey(ordenDeFabricacion, null=False)
+    inventarioInicialMp=models.FloatField(default=0.0)
+    compras=models.FloatField(default=0.0)
+    inventarioFinal=models.FloatField(default=0.0)
+    invIniPenP=models.FloatField(default=0.0)
+    invFinalPenP=models.FloatField(default=0.0)
+    invInicialProductTerminado=models.FloatField(default=0.0)
+    invFinalProductTerminado=models.FloatField(default=0.0)
+    nuneroArticulos=models.IntegerField(default=0.0)
+
+
+
+    def MPDisp(self):
+        return self.inventarioInicialMp+self.compras
+
+    def MPUtilizada(self):
+        return self.ordenDeFabricacion.totalMP()
+
+    def costoArtTerminado(self):
+        return self.ordenDeFabricacion.totalMP()+self.invIniPenP+self.ordenDeFabricacion.totalMOD()+self.ordenDeFabricacion.importe()-self.invFinalPenP
+
+    def artTerDisp(self):
+        return self.ordenDeFabricacion.totalMP()+self.invIniPenP+self.ordenDeFabricacion.totalMOD()+self.ordenDeFabricacion.importe()-self.invFinalPenP+self.invInicialProductTerminado
+
+    def costoVendido(self):
+        return self.ordenDeFabricacion.totalMP()+self.invIniPenP+self.ordenDeFabricacion.totalMOD()+self.ordenDeFabricacion.importe()-self.invFinalPenP+self.invInicialProductTerminado-self.invFinalProductTerminado
+
+    def costoUnitario(self):
+        return (self.ordenDeFabricacion.totalMP()+self.invIniPenP+self.ordenDeFabricacion.totalMOD()+self.ordenDeFabricacion.importe()-self.invFinalPenP+self.invInicialProductTerminado-self.invFinalProductTerminado)/self.nuneroArticulos
 
     def __str__(self):
         return self.nombre

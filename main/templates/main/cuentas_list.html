@@ -25,6 +25,7 @@
 		<th data-field="id">Codigo</th>
 		<th data-field="rubro">Rubro</th>
 		<th data-field="nombre">Nombre de Cuenta</th>
+        <th data-field="saldo">Debe</th>
 
 	</tr>
 </thead>
@@ -35,7 +36,11 @@
 		<td>{{activo.codigo}}</td>
 		<td>{{activo.rubro.nombre}}</td>
 		<td>{{activo.nombre}}</td>
-		{%endfor%}
+        <td>{{activo.debe}}</td>
+
+
+
+    {%endfor%}
 	</tr>
 
 </tbody>
@@ -46,8 +51,8 @@
     <br>
 
     <h5>2. Pasivos</h5>
-    {% if pasivos %}
     <div class="divider"></div>
+    {% if pasivos %}
     <table class="striped centered">
 
         <thead>
@@ -56,6 +61,8 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+            <th data-field="saldo">Haber</th>
+
 
         </tr>
         </thead>
@@ -66,7 +73,9 @@
 		<td>{{pasivo.codigo}}</td>
 		<td>{{pasivo.rubro.nombre}}</td>
 		<td>{{pasivo.nombre}}</td>
-		{%endfor%}
+        <td>{{pasivo.haber}}</td>
+
+    {%endfor%}
 	</tr>
         </tbody>
     </table>
@@ -75,9 +84,9 @@
     {% endif %}
     <br>
 
-{% if patrimonios %}
     <h5>3. Patrimonio</h5>
     <div class="divider"></div>
+    {% if patrimonios %}
     <table class="striped centered">
 
         <thead>
@@ -86,6 +95,7 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -95,6 +105,7 @@
 		<td>{{patrimonio.codigo}}</td>
 		<td>{{patrimonio.rubro.nombre}}</td>
 		<td>{{patrimonio.nombre}}</td>
+        <td>{{patrimonio.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -115,6 +126,7 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -124,6 +136,7 @@
 		<td>{{resultadoA.codigo}}</td>
 		<td>{{resultadoA.rubro.nombre}}</td>
 		<td>{{resultadoA.nombre}}</td>
+        <td>{{resultadoA.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -145,6 +158,7 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+            <th data-field="saldo">Debe</th>
 
         </tr>
         </thead>
@@ -154,6 +168,7 @@
 		<td>{{resultadoD.codigo}}</td>
 		<td>{{resultadoD.rubro.nombre}}</td>
 		<td>{{resultadoD.nombre}}</td>
+        <td>{{resultadoD.debe}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -174,6 +189,7 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -183,6 +199,7 @@
 		<td>{{contra.codigo}}</td>
 		<td>{{contra.rubro.nombre}}</td>
 		<td>{{contra.nombre}}</td>
+        <td>{{contra.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -191,25 +208,25 @@
     <h6>No hay registros</h6>
 {% endif %}
 
-	<div id="modal1" class="modal" height="100">
-	<div class="modal-content" >
-<h4>Crear Cuenta</h4>
 
-
-<form method="POST" action="{%url 'cuenta_nueva'%}" >{%csrf_token%}
-
-{{cuenta.as_p}}
-
-	<button type="submit" class="save btn btn-default">Guardar cuenta</button>
-
-</form>
-</div>
-</div>
 </div>
 </main>
 
 
+    <div id="modal1" class="modal" height="100">
+        <div class="modal-content" >
+            <h4>Crear Cuenta</h4>
 
+
+            <form method="POST" action="{%url 'cuenta_nueva'%}" >{%csrf_token%}
+
+                {{cuenta.as_p}}
+
+                <button type="submit" class="save btn btn-default">Guardar cuenta</button>
+
+            </form>
+        </div>
+    </div>
 
 
 

@@ -12,7 +12,7 @@ from main.forms import EmpleadoForm
 from main.forms import LoginForm
 from main.forms import MovimientoForm
 from main.forms import TransaccionForm
-from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento
+from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento, ordenDeFabricacion, producto
 
 
 @login_required(login_url='login')
@@ -232,3 +232,13 @@ class empleado_list(ListView):
 class planilla(ListView):
     model = Empleado
     template_name = 'main/Planilla.html'
+
+
+class listaOrdenes(ListView):
+    model = ordenDeFabricacion
+    template_name = 'main/ordenFabricacion.html'
+
+
+class lsitaProductos(ListView):
+    model = producto
+    template_name = 'main/produccion_ventas.html'
