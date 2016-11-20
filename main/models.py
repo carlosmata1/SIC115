@@ -5,8 +5,13 @@ from django.db import models
 
 class Puesto(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
+
     nombre = models.TextField(max_length=30, null=False)
-    salario = models.DecimalField(max_digits=5, decimal_places=5, null=False)
+    salario = models.DecimalField(max_digits=5, decimal_places=5, null=True)
+
+    nombre = models.CharField(max_length=30, null=False)
+    salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+
     def __str__(self):
         return self.nombre
 
@@ -18,8 +23,8 @@ class Empleado(models.Model):
     )
 
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
-    nombres = models.TextField(max_length=50, null=False)
-    apellidos = models.TextField(max_length=50, null=False)
+    nombres = models.CharField(max_length=50, null=False)
+    apellidos = models.CharField(max_length=50, null=False)
     edad = models.IntegerField(null=False)
     sexo = models.CharField(max_length=1, choices=sexo_opt, null=False)
     direccion = models.TextField(max_length=200, null=False)
@@ -112,4 +117,14 @@ class Movimiento(models.Model):
     debe=models.BooleanField()
     cantidad=models.DecimalField(max_digits=10,decimal_places=5,null=True)
     def __str__(self):
+
         return str(self.cantidad)
+
+
+
+class prestacion(models.Model):
+    id=models.IntegerField(editable=False, auto_created=True, primary_key=True)
+    nombre=models.CharField(max_length=100, null=False)
+    porcentage= models.DecimalField(max_digits=6,decimal_places=3)
+    def __str__(self):
+        return self.nombre

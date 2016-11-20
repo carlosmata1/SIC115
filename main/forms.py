@@ -2,9 +2,9 @@ import datetime
 from django import forms
 from models import Cuenta,Rubro,Transaccion,Empleado,TipoTransaccion
 
-tiposCuentas=((1,'Activo',),(2,'Pasivo',),(3,'Capital',),(4,'Resultado',))
+tiposCuentas=((1,'Activo',),(2,'Pasivo',),(3,'Capital',),(4,'Resultado Deudora',),(5,'Resultado Acreedora'),)
 DATE_INPUT_FORMATS = ('%d-%m-%Y')
-debes=((True,'False',),(False,'True',))
+debes=((True,'Debe',),(False,'Haber',))
 
 class LoginForm(forms.Form):
     	username = forms.CharField(required=True,
@@ -43,4 +43,58 @@ class TransaccionForm(forms.Form):
 	tipo=forms.ModelChoiceField(required=True,
 			queryset=TipoTransaccion.objects.all())
 	descripcion=forms.CharField(widget=forms.Textarea)
+
 	fecha=forms.DateField()
+
+	
+
+
+
+class EmpleadoFomr(forms.ModelForm):
+
+	class Meta:
+		model=Empleado
+
+		fields=[
+			'nombres',
+			'apellidos',
+			'edad',
+			'sexo',
+			'direccion',
+			'telefono',
+			'contacto',
+			'dui',
+			'nit',
+			'afp',
+			'puesto',
+			'activo',
+		]
+		labels={
+			'nombres': 'Nombres',
+			'apellidos':'Apellidos',
+			'edad': 'Edad',
+			'sexo': 'sexo',
+			'direccion':'Direccion',
+			'telefono':'telefono',
+			'contacto':'Contacto',
+			'dui':'DUI',
+			'nit':'NIT',
+			'afp':'AFP',
+			'puesto':'Puesto',
+			'activo':'Activo',
+		}
+		widgets={
+			'nombres': forms.TextInput (attrs={'class':'input-field col s3'}),
+			'apellidos':forms.TextInput (attrs={'class':'input-field '}),
+			'edad':forms.NumberInput(attrs={'class':'input-field '}),
+			'sexo':forms.Select(attrs={'class':'input-field '}),
+			'direccion':forms.TextInput (attrs={'class':'input-field'}),
+			'telefono':forms.NumberInput (attrs={'class':'input-field '}),
+			'contacto':forms.TextInput (attrs={'class':'input-field'}),
+			'dui':forms.TextInput (attrs={'class':'input-field '}),
+			'nit':forms.TextInput (attrs={'class':'input-field '}),
+			'afp':forms.TextInput (attrs={'class':'input-field'}),
+			'puesto':forms.Select(attrs={'class':'input-field'}),
+			'activo':forms.CheckboxSelectMultiple(attrs={'type':'checkbox'}),
+		}
+

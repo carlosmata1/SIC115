@@ -3,16 +3,27 @@
 
 {% load staticfiles %}
 
-{% block titulo %} Empleados {% endblock %}
+{% block titulo %} Cuentas {% endblock %}
 
 {% block contenido %}
-<main>
 
+
+
+<main>
+<div class="container">
 
 <div class="card-action">
                         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Agregar Cuenta</a>
                     </div>
 <table class="striped">
+    <a class="waves-effect waves-light btn modal-trigger #2e7d32 green darken-3" href="#modal1">Agregar Cuenta</a>
+</div>
+<br>
+<br>
+<h5>1. Activos</h5>
+<div class="divider"></div>
+    {% if activos %}
+<table class="highlight">
 	
 <thead>
 
@@ -24,11 +35,7 @@
 	</tr>
 </thead>
 <tbody>
-<tr>
-		<th class="card-panel deep-orange darken-1" data-field="codigo">1</th>	
-		<th class="card-panel deep-orange darken-1" data-field="tipo">Activo</th>
 
-	</tr>
 	{%for activo in activos%}
 	<tr>
 		<td>{{activo.codigo}}</td>
@@ -37,10 +44,31 @@
 		{%endfor%}
 	</tr>
 	<tr>
-	<th class="card-panel deep-orange darken-1"data-field="codigo">2</th>
-	<th class="card-panel deep-orange darken-1" data-field="tipo">Pasivos</th>
+	
 
-	</tr>
+</tbody>
+</table>
+{% else %}
+<h6>No hay registros</h6>
+{% endif %}
+    <br>
+
+    <h5>2. Pasivos</h5>
+    {% if pasivos %}
+    <div class="divider"></div>
+    <table class="highlight">
+
+        <thead>
+
+        <tr>
+            <th data-field="id">Codigo</th>
+            <th data-field="rubro">Rubro</th>
+            <th data-field="nombre">Nombre de Cuenta</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
 	{%for pasivo in pasivos%}
 	<tr>
 		<td>{{pasivo.codigo}}</td>
@@ -50,10 +78,31 @@
 	</tr>
 
 	<tr>
-	<th class="card-panel deep-orange darken-1" data-field="codigo">3</th>
-	<th class="card-panel deep-orange darken-1" data-field="tipo">Patrimonios</th>
-
+	
 	</tr>
+        </tbody>
+    </table>
+    {% else %}
+        <h6>No hay registros</h6>
+    {% endif %}
+    <br>
+
+
+    <h5>3. Patrimonio</h5>
+    {% if patrimonios %}
+    <div class="divider"></div>
+    <table class="highlight">
+
+        <thead>
+
+        <tr>
+            <th data-field="id">Codigo</th>
+            <th data-field="rubro">Rubro</th>
+            <th data-field="nombre">Nombre de Cuenta</th>
+
+        </tr>
+        </thead>
+        <tbody>
 	{%for patrimonio in patrimonios%}
 	<tr>
 		<td>{{patrimonio.codigo}}</td>
@@ -62,24 +111,64 @@
 		{%endfor%}
 	</tr>
 <tr>
-	<th class="card-panel deep-orange darken-1" data-field="codigo">4</th>
-	<th class="card-panel deep-orange darken-1" data-field="tipo">Resultado Acreedor</th>
+	
 
 	</tr>
-	{%for resultadoA in resultadosA%}
+        </tbody>
+    </table>
+{% else %}
+    <h6>No hay registros</h6>
+{% endif %}
+
+    <br>
+    <h5>4. Resultado Acreedor</h5>
+    <div class="divider"></div>
+{% if ResultadosH %}
+    <table class="highlight">
+
+        <thead>
+
+        <tr>
+            <th data-field="id">Codigo</th>
+            <th data-field="rubro">Rubro</th>
+            <th data-field="nombre">Nombre de Cuenta</th>
+
+        </tr>
+        </thead>
+        <tbody>
+	{%for resultadoA in ResultadosH%}
 	<tr>
 		<td>{{resultadoA.codigo}}</td>
 		<td>{{resultadoA.rubro.nombre}}</td>
 		<td>{{resultadoA.nombre}}</td>
 		{%endfor%}
 	</tr>
+        </tbody>
+    </table>
+{% else %}
+    <h6>No hay registros</h6>
+{% endif %}
 
 	<tr>
-	<th class="card-panel deep-orange darken-1" data-field="codigo">5</th>
-	<th class="card-panel deep-orange darken-1" data-field="tipo">Resultado Deudor</th>
+	
+    <br>
+    <h5>5. Resultado Deudor</h5>
+    <div class="divider"></div>
+    {% if ResultadosD %}
 
-	</tr>
-	{%for resultadoD in resultadosD%}
+    <table class="highlight">
+
+        <thead>
+
+        <tr>
+            <th data-field="id">Codigo</th>
+            <th data-field="rubro">Rubro</th>
+            <th data-field="nombre">Nombre de Cuenta</th>
+
+        </tr>
+        </thead>
+        <tbody>
+	{%for resultadoD in ResultadosD%}
 	<tr>
 		<td>{{resultadoD.codigo}}</td>
 		<td>{{resultadoD.rubro.nombre}}</td>
@@ -87,10 +176,30 @@
 		{%endfor%}
 	</tr>
 	<tr>
-	<th class="card-panel deep-orange darken-1" data-field="codigo">6</th>
-	<th class="card-panel deep-orange darken-1" data-field="tipo">Contra Activos</th>
-
+	
 	</tr>
+        </tbody>
+    </table>
+    {% else %}
+        <h6>No hay registros</h6>
+    {% endif %}
+
+    <br>
+    <h5>6. Contra Activos</h5>
+    <div class="divider"></div>
+{% if contraActivos %}
+    <table class="highlight">
+
+        <thead>
+
+        <tr>
+            <th data-field="id">Codigo</th>
+            <th data-field="rubro">Rubro</th>
+            <th data-field="nombre">Nombre de Cuenta</th>
+
+        </tr>
+        </thead>
+        <tbody>
 	{%for contra in contraActivos%}
 	<tr>
 		<td>{{contra.codigo}}</td>
@@ -98,6 +207,11 @@
 		<td>{{contra.nombre}}</td>
 		{%endfor%}
 	</tr>
+        </tbody>
+    </table>
+{% else %}
+    <h6>No hay registros</h6>
+{% endif %}
 
 </tbody>
 </table>
@@ -127,12 +241,6 @@
 </form>
 </div>
 </div>
-
+</div>
 </main>
-
-
-
-
-
-
 {% endblock %}

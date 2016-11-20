@@ -4,7 +4,6 @@ main{
 
 }
 
-
 video{
 	margin: 0;
 	width: 50%;
@@ -13,13 +12,15 @@ video{
 #log{
 	margin-top: 80px;
 }
-form{
 
-	margin-left: 30px;
-}
 
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
   }
+.modal{
+	width: 70% !important;
+	height: 80% !important;
+	margin-left: 30%;
+}

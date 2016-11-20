@@ -5,16 +5,13 @@
 {% block contenido %}
     <main>
         
-
+{%if agregar%}
 <div class="card-action">
 <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Agregar Transaccion</a>
 </div>
-<form action="{% url 'agregar_movimiento' %}" method="POST" >{%csrf_token%}
-                  <label>Digite la cantidad de movimientos involucradas</label>
-                  <input type="number" name="mov" min="2" value="2">
-                   <button type="submit" href="{% url 'agregar_movimiento' %}" class="save btn btn-default">Agregar Movimientos</button>
-                   
-                    </form>
+{%endif%}
+
+
 
 
     <div id="modal1" class="modal" height="100">
@@ -65,5 +62,32 @@
 </div>
  
 </div>
+
+<div class="container">
+
+
+    <form action="{% url 'agregar_movimiento' %}" method="POST" >{%csrf_token%}
+                  <h5>Cantidad de movimientos involucrados</h5>
+                  <input type="text" name="mov" min="2" value="2" placeholder="Dijite el numero de cuentas a usar" size="10"  required>
+                   <button type="submit" href="{% url 'agregar_movimiento' %}" class="save btn btn-default">Agregar Movimientos</button>
+    </form>
+
+    <br>
+    <br>
+    <br>
+    
+
+    <div id="modal1" class="modal" height="100">
+    <div class="modal-content" >
+    
+       
+            
+
+
+    </div>
+    </div>
+</div>
+
+
     </main>
 {% endblock %}
