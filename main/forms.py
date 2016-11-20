@@ -12,10 +12,10 @@ debes=((True,'False',),(False,'True',))
 
 class LoginForm(forms.Form):
     username = forms.CharField(required=True,
-                               label='username',
+                               label='Username',
                                widget=forms.TextInput(attrs={'class': 'validate white-text'}))
     password = forms.CharField(required=True,
-                               label='password',
+                               label='Password',
                                widget=forms.PasswordInput(attrs={'class': 'validate white-text'}))
 
 
