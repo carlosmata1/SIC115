@@ -203,3 +203,19 @@ class producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class MovimientoMp(models.Model):
+    tipo_opt = (
+        ('E', 'Entrada'),
+        ('S', 'Salida'),
+    )
+    idMov=models.IntegerField(primary_key=True, editable=False, auto_created=True)
+    tipo = models.CharField(max_length=1, choices=tipo_opt, null=False)
+    fecha=models.DateField()
+    nombre=models.CharField(max_length=50)
+    cantidad=models.FloatField(default=0.0)
+    precioUnitario= models.FloatField(default=0.0)
+
+
+

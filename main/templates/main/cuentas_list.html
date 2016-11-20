@@ -25,7 +25,7 @@
 		<th data-field="id">Codigo</th>
 		<th data-field="rubro">Rubro</th>
 		<th data-field="nombre">Nombre de Cuenta</th>
-        <th data-field="saldo">Debe</th>
+
 
 	</tr>
 </thead>
@@ -36,7 +36,6 @@
 		<td>{{activo.codigo}}</td>
 		<td>{{activo.rubro.nombre}}</td>
 		<td>{{activo.nombre}}</td>
-        <td>{{activo.debe}}</td>
 
 
 
@@ -61,7 +60,6 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="saldo">Haber</th>
 
 
         </tr>
@@ -73,7 +71,6 @@
 		<td>{{pasivo.codigo}}</td>
 		<td>{{pasivo.rubro.nombre}}</td>
 		<td>{{pasivo.nombre}}</td>
-        <td>{{pasivo.haber}}</td>
 
     {%endfor%}
 	</tr>
@@ -95,7 +92,6 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -105,7 +101,6 @@
 		<td>{{patrimonio.codigo}}</td>
 		<td>{{patrimonio.rubro.nombre}}</td>
 		<td>{{patrimonio.nombre}}</td>
-        <td>{{patrimonio.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -126,7 +121,6 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -136,7 +130,6 @@
 		<td>{{resultadoA.codigo}}</td>
 		<td>{{resultadoA.rubro.nombre}}</td>
 		<td>{{resultadoA.nombre}}</td>
-        <td>{{resultadoA.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -158,7 +151,6 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="saldo">Debe</th>
 
         </tr>
         </thead>
@@ -168,7 +160,6 @@
 		<td>{{resultadoD.codigo}}</td>
 		<td>{{resultadoD.rubro.nombre}}</td>
 		<td>{{resultadoD.nombre}}</td>
-        <td>{{resultadoD.debe}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -189,7 +180,6 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -199,7 +189,6 @@
 		<td>{{contra.codigo}}</td>
 		<td>{{contra.rubro.nombre}}</td>
 		<td>{{contra.nombre}}</td>
-        <td>{{contra.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
