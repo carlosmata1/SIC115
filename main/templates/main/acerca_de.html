@@ -1,3 +1,122 @@
 {% extends 'template_home.html' %}
-
+{% load staticfiles %}
 {% block titulo %}Acerca de{% endblock %}
+{% block contenido %}
+
+    <main>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col s12">
+                    <h2 class="light">Historia de la empresa Francés</h2>
+                    <div class="divider"></div>
+
+                </div>
+
+                <div class="col s12">
+
+                    <p>La empresa Francés nace en septiembre del 2016, como resultado de una idea emprendedora por  parte de los estudiantes Daniel Alejandro Díaz, Luis Alejandro Alas, Carlos Mata, Jorge Otoniel Rodríguez y Juan José González.
+
+                    La idea surge en una cena de planificación de un proyecto, eran las 7: 00 PM, todos estaban cansados y con hambre, por lo que se decidió  comer algo, todos pidieron algo diferente para cenar: frijoles fritos, plátano, casamiento, huevo picado, tamales, entre otras cosas, pero todas las cenas con un elemento en común;Pan Francés. Debido a eso, surge la idea y se estudia la demanda del pan francés en los hogares salvadoreños, y se decidió fundar la empresa Francés.
+
+                    Francés es una empresa dedicada a la producción y venta de pan francés en diferentes presentaciones.
+
+                    La empresa se encuentra en fase de crecimiento y buscando ampliar su mercado. Y por ser una nueva empresa, necesitará contar con un Software Contable, para apoyar al proceso de contabilidad.
+                    </p>
+                </div>
+                <br>
+
+
+
+                    <div class="col s12">
+
+                    <h2 class="light">Equipo de desarrollo</h2>
+                    <div class="divider"></div>
+                        <br>
+                        <br>
+
+                </div>
+
+                <div class="row">
+                    <div class="col s4">
+                        <center><img src="{% static 'main/images/Oto.png' %}"></center>
+                    </div>
+
+                    <div class="col s8">
+                        <h4 class="left">Jorge Otoniel Rodríguez</h4>
+                    </div>
+                    <div class="col s8">
+                    <h6 class="light">Estudiante de Ingeniería de Sistemas Informáticos</h6>
+                    </div>
+
+                </div>
+                <div class="divider"></div>
+
+                <div class="row">
+                    <div class="col s4">
+                        <center>  <img src="{% static 'main/images/Luis.png' %}">  </center>
+                    </div>
+
+                    <div class="col s8">
+                        <h4 class="left">Luis Alejandro Alas</h4>
+
+                    </div>
+
+                    <div class="col s8">
+                        <h6 class="light">Estudiante de Ingeniería de Sistemas Informáticos</h6>
+                    </div>
+                </div>
+                <div class="divider"></div>
+
+                <div class="row">
+                    <div class="col s4">
+                        <center><img src="{% static 'main/images/Mata.png' %}"></center>
+                    </div>
+
+                    <div class="col s8">
+                        <h4 class="left">Carlos Antonio Mata</h4>
+                    </div>
+
+                    <div class="col s8">
+                        <h6 class="light">Estudiante de Ingeniería de Sistemas Informáticos</h6>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <div class="col s4">
+                        <center><img src="{% static 'main/images/Daniel.png' %}"></center>
+                    </div>
+
+                    <div class="col s8">
+                        <h4 class="left">Daniel Alejandro Díaz</h4>
+
+                    </div>
+
+                    <div class="col s8">
+                        <h6 class="light">Estudiante de Ingeniería de Sistemas Informáticos</h6>
+                    </div>
+
+                </div>
+                <div class="divider"></div>
+                <div class="col s4">
+                    <center><img src="{% static 'main/images/Juan.png' %}"></center>
+                </div>
+
+                <div class="col s8">
+                    <h4 class="left">Juan José González</h4>
+
+                </div>
+
+                <div class="col s8">
+                    <h6 class="light">Estudiante de Ingeniería de Sistemas Informáticos</h6>
+                </div>
+
+
+            </div>
+
+
+        </div><!--Fin container-->
+
+    </main>
+{% endblock %}

@@ -31,10 +31,14 @@
 		<th data-field="id">Codigo</th>
 		<th data-field="rubro">Rubro</th>
 		<th data-field="nombre">Nombre de Cuenta</th>
+
         <th data-field="debe">Debe</th>
         <th data-field="haber">Haber</th>
         <th data-field="saldoFinal">Saldo Final</th>
     </tr>
+
+        <th data-field="saldo">Debe</th>
+
 	</tr>
 </thead>
 <tbody>
@@ -45,9 +49,15 @@
 		<td>{{activo.rubro.nombre}}</td>
 		<td>{{activo.nombre}}</td>
         <td>{{activo.debe}}</td>
+
          <td>{{activo.haber}}</td>
          <td>{{activo.saldoFinal}}</td>
 		{%endfor%}
+
+
+
+
+    {%endfor%}
 	</tr>
 	<tr>
 	
@@ -60,9 +70,10 @@
     <br>
 
     <h5>2. Pasivos</h5>
-    {% if pasivos %}
     <div class="divider"></div>
     <table class="highlight">
+    {% if pasivos %}
+    <table class="striped centered">
 
         <thead>
 
@@ -73,6 +84,8 @@
             <th data-field="debe">Debe</th>
              <th data-field="debe">Haber</th>
              <th data-field="saldoFinal">Saldo Final</th>
+            <th data-field="saldo">Haber</th>
+
 
         </tr>
         </thead>
@@ -87,6 +100,10 @@
          <td>{{pasivo.haber}}</td>
          <td>{{pasivo.saldoFinal}}</td>
 		{%endfor%}
+
+        <td>{{pasivo.haber}}</td>
+
+    {%endfor%}
 	</tr>
 
 	<tr>
@@ -100,10 +117,13 @@
     <br>
 
 
+
     <h5>3. Patrimonio</h5>
     {% if patrimonios %}
     <div class="divider"></div>
     <table class="highlight">
+    {% if patrimonios %}
+    <table class="striped centered">
 
         <thead>
 
@@ -114,6 +134,7 @@
             <th data-field="debe">Debe</th>
              <th data-field="debe">Haber</th>
              <th data-field="saldoFinal">Saldo Final</th>
+            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -126,6 +147,7 @@
          <td>{{patrimonio.debe}}</td>
          <td>{{patrimonio.haber}}</td>
          <td>{{patrimonio.saldoFinal}}</td>
+        <td>{{patrimonio.haber}}</td>
 		{%endfor%}
 	</tr>
 <tr>
@@ -150,9 +172,12 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+
             <th data-field="debe">Debe</th>
              <th data-field="debe">Haber</th>
              <th data-field="saldoFinal">Saldo Final</th>
+
+            <th data-field="saldo">Haber</th>
 
         </tr>
         </thead>
@@ -162,9 +187,10 @@
 		<td>{{resultadoA.codigo}}</td>
 		<td>{{resultadoA.rubro.nombre}}</td>
 		<td>{{resultadoA.nombre}}</td>
-         <td>{{resultadoA.debe}}</td>
+ <td>{{resultadoA.debe}}</td>
          <td>{{resultadoA.haber}}</td>
          <td>{{resultadoA.saldoFinal}}</td>
+      <td>{{resultadoA.haber}}</td>
 		{%endfor%}
 	</tr>
         </tbody>
@@ -188,10 +214,12 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="debe">Debe</th>
+          <th data-field="debe">Debe</th>
              <th data-field="debe">Haber</th>
              <th data-field="saldoFinal">Saldo Final</th>
-        </tr>
+        <th data-field="saldo">Debe</th>
+
+      </tr>
         </thead>
         <tbody>
 	{%for resultadoD in ResultadosD%}
@@ -199,9 +227,10 @@
 		<td>{{resultadoD.codigo}}</td>
 		<td>{{resultadoD.rubro.nombre}}</td>
 		<td>{{resultadoD.nombre}}</td>
-         <td>{{resultadoD.debe}}</td>
+       <td>{{resultadoD.debe}}</td>
          <td>{{resultadoD.haber}}</td>
          <td>{{resultadoD.saldoFinal}}</td>
+     <td>{{resultadoD.debe}}</td>
 		{%endfor%}
 	</tr>
 	<tr>
@@ -215,34 +244,61 @@
 
     <br>
 
-</tbody>
-</table>
+    <h5>6. Contra Activos</h5>
+    <div class="divider"></div>
+{% if contraActivos %}
+    <table class="striped centered">
+
+        <thead>
+
+        <tr>
+            <th data-field="id">Codigo</th>
+            <th data-field="rubro">Rubro</th>
+            <th data-field="nombre">Nombre de Cuenta</th>
+            <th data-field="saldo">Haber</th>
+
+        </tr>
+        </thead>
+        <tbody>
+	{%for contra in contraActivos%}
+	<tr>
+		<td>{{contra.codigo}}</td>
+		<td>{{contra.rubro.nombre}}</td>
+		<td>{{contra.nombre}}</td>
+        <td>{{contra.haber}}</td>
+		{%endfor%}
+	</tr>
+        </tbody>
+    </table>
+{% else %}
+    <h6>No hay registros</h6>
+{% endif %}
 
 
+</div>
+</main>
 
 
-
-
-
-
-
-
-
-
-	<div id="modal1" class="modal" height="100">
-	<div class="modal-content" >
-<h4>Crear Cuenta</h4>
-
-
-<form method="POST" action="{%url 'cuenta_nueva'%}" >{%csrf_token%}
-
-{{cuenta.as_p}}
-
-	<button type="submit" class="save btn btn-default">Guardar cuenta</button>
+    <div id="modal1" class="modal" height="100">
+        <div class="modal-content" >
+            <h4>Crear Cuenta</h4>
 
 </form>
 </div>
 </div>
 </div>
 </main>
+{% endblock %}
+            <form method="POST" action="{%url 'cuenta_nueva'%}" >{%csrf_token%}
+
+                {{cuenta.as_p}}
+
+                <button type="submit" class="save btn btn-default">Guardar cuenta</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
 {% endblock %}

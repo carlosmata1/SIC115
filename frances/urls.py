@@ -40,5 +40,8 @@ urlpatterns = [
     url(r'^libro_diario/', views.libro_diario, name="libro_diario"),
     url(r'^agregar_empleado/', views.empleado_view, name="agregar_empleado"),
     url(r'^planilla/', views.planilla.as_view(), name="planilla"),
+    url(r'^ordenes/', views.listaOrdenes.as_view(), name="ordenes"),
+    url(r'^produccion/', views.listaProductos.as_view(), name="produccion"),
+
 
 ]

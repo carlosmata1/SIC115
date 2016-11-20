@@ -7,12 +7,18 @@
         <li><div class="divider"></div></li>
 
         <li class="bold"><a href="{% url 'index' %}" class="waves-effect waves-black"><i class="material-icons">home</i>Inicio</a></li>
-       
-        
-      
+
         <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">assessment</i>Estados financieros</a>
+        <ul class="collapsible collapsible-accordion">
+            <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">input</i>Transacciones</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="{%  url 'libro_diario' %}" class="waves-effect waves-black">Libro Diario</a></li>
+                        <li><a href="" class="waves-effect waves-black">Venta</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">assessment</i>Estados financieros</a>
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="{% url 'balance_comprobacion' %}" class="waves-effect waves-black">Balance de comprobación</a></li>
@@ -22,18 +28,13 @@
                         </ul>
                     </div>
                 </li>
-                   <li class="bold "><a class="collapsible-header  waves-effect waves-black  "><i class="material-icons ">assessment</i>Transacciones</a>
-					<div class="collapsible-body">
-					<ul>
-					<li><a href="{%  url 'libro_diario' %}" class="waves-effect waves-black">Libro Diario</a></li>
-                            <li><a href="" class="waves-effect waves-black">Venta</a></li>
-                            
-					</ul>					
-					
-					</div>
 
-</li>
                 <li class="bold"><a href="{% url 'ajustes_financieros' %}" class="waves-effect waves-black"><i class="material-icons">settings</i>Ajustes Financieros</a></li>
+                <li class="bold"><a href="{% url 'ordenes' %}" class="waves-effect waves-black"><i class="material-icons">toc</i>Ordenes de Fabricación</a></li>
+                <li class="bold"><a href="{% url 'produccion' %}" class="waves-effect waves-black"><i class="material-icons">business</i>Costeos</a></li>
+                <li class="bold"><a href="{% url 'planilla' %}" class="waves-effect waves-black"><i class="material-icons">playlist_add_check</i>Planilla</a></li>
+                <li class="bold"><a href="" class="waves-effect waves-black"><i class="material-icons">assignment</i>Inventario de Materia Prima</a></li>
+
 
                 <li class="bold"><a class="collapsible-header  waves-effect waves-black"><i class="material-icons">create</i>Opciones</a>
                     <div class="collapsible-body">
