@@ -145,8 +145,8 @@ class Prestacion(models.Model):
 
 class ordenDeFabricacion(models.Model):
     numOrden=models.IntegerField(editable=False, auto_created=True, primary_key=True, unique=True)
-    fechaExpedicion=models.DateField
-    fechaRequerida=models.DateField
+    fechaExpedicion=models.DateField(default='2000-01-01')
+    fechaRequerida=models.DateField(default='2000-01-01')
     materal=models.CharField(max_length=100, null=False)
     catidadMP=models.FloatField(default=0.0)
     costoUnitarioMP=models.FloatField(default=0.0)
@@ -165,6 +165,9 @@ class ordenDeFabricacion(models.Model):
     def importe(self):
         return (self.catidadMP*self.costoUnitarioMP)*self.tasaCIF
 
+    def __str__(self):
+        numeroOrden=str(self.numOrden)
+        return numeroOrden
 
 
 

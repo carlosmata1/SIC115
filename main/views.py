@@ -4,14 +4,15 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
 from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
 
 from main.forms import CuentaForm
 from main.forms import EmpleadoForm
 from main.forms import LoginForm
 from main.forms import MovimientoForm
-from main.forms import TransaccionForm
+from main.forms import TransaccionForm,OrdenForm
 from main.models import MovimientoMp
 from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento, ordenDeFabricacion, producto
 
@@ -278,4 +279,14 @@ class listaMovimientosMP(ListView):
             'titulo':'Inventario de materia Prima',
             'object_list': MovimientoMp.objects.all()
         })
+
+
+class CrearOrde(CreateView):
+    model = ordenDeFabricacion
+    form_class = OrdenForm
+    template_name = 'main/agregarOrden.html'
+    success_url = reverse_lazy('ordenDeFabricacion:listaOrdenes')
+
+
+
 
