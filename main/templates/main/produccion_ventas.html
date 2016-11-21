@@ -2,29 +2,20 @@
 
 {% load staticfiles %}
 
-{% block titulo %}Produccion{% endblock %}
+{% block titulo %}Producción{% endblock %}
 
 {% block contenido %}
 
     <main>
         <div class="container">
-
-
-            <h1>Producción y Ventas</h1>
-            <div class="divider"></div>
-
             <a class="waves-effect waves-light btn #2e7d32 green darken-3"   href=""><i class="material-icons right">add_circle</i>Agregar</a>
-
             <br>
             <br>
-
             <h3>Caja de costos</h3>
             <div class="divider"></div>
             {% if object_list %}
                 <table class="striped centered responsive-table">
-
                     <thead>
-
                     <tr>
                         <th data-field="numero">No orden</th>
                         <th data-field="MPUsada">MP utilizada</th>
@@ -37,7 +28,6 @@
                         <th data-field="CAT">Art. terminados Disp.</th>
                         <th data-field="CAT">Inv. Fin P Terminado</th>
                         <th data-field="CAT">Costo de lo vendido</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -56,8 +46,6 @@
                             <td>{{producto.artTerDisp}}</td>
                             <td>{{producto.invFinalProductTerminado}}</td>
                             <td>{{producto.costoVendido}}</td>
-
-
                         </tr>
                     {%endfor%}
 
@@ -81,44 +69,45 @@
                     </tbody>
                 </table>
 
-
-
+                    <br>
+                    <br>
                     <h5 class="bold">Costo de lo Vendido vrs. Orden de Fabricación</h5>
 
                     <div class="divider"></div>
                 <p>Costo de lo vendido</p>
-                <div id="canvas-holder">
-                    <canvas id="chart-area1" width="500" height="250" ></canvas>
-                </div>
-                    <script>
-                        var data = {
-                            labels : [
+                <canvas id="chart1" width="200" height="70"></canvas>
+                <script>
+                    var ctx = document.getElementById("chart1");
+                    var chart1 = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: [
                                 {% for producto in object_list %}
                                     "{{ producto.ordenDeFabricacion.numOrden}}",
                                 {% endfor %}],
+                            datasets: [{
+                                label: 'Costo',
 
-                            datasets : [
-                                {
-                                    label: "Primera serie de datos",
-                                    fillColor : "rgba(20, 220, 51, 0.2)",
-                                    strokeColor : "#36b4a0",
-                                    pointColor : "#1e45d7",
-                                    pointStrokeColor : "#fff",
-                                    pointHighlightFill : "#fff",
-                                    pointHighlightStroke : "rgba(220,220,220,1)",
-                                    data : [
-                                        {% for producto in object_list%}
-                                            {{producto.costoVendido}},
-                                        {% endfor %}
-                                    ]
-                                }
-                            ]
-
-                        };
-                        var ctx1 = document.getElementById("chart-area1").getContext("2d");
-                        window.myPie = new Chart(ctx1).Bar(data,{responsive:false});
-
-                    </script>
+                                data: [
+                                    {% for producto in object_list%}
+                                        {{producto.costoVendido}},
+                                    {% endfor %}],
+                                backgroundColor:'rgba(0, 128, 0, 0.2)',
+                                borderColor: 'rgba(0, 128, 0,1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                </script>
                 <p class="center">Ordenes de fabricación</p>
 
 
@@ -128,17 +117,13 @@
                 <h3>Costos Unitarios</h3>
                 <div class="divider"></div>
                 <table class="striped centered responsive-table">
-
                 <thead>
-
                 <tr>
                     <th data-field="numero">No orden</th>
                     <th data-field="nombre">Producto</th>
                     <th data-field="CAT">Costo de lo vendido</th>
                     <th data-field="cantidad">Cantidad de Productos</th>
                     <th data-field="CU">Costo Unitario</th>
-
-
                 </tr>
                 </thead>
                 <tbody>
@@ -151,7 +136,6 @@
                         <td>${{producto.costoVendido}}</td>
                         <td>{{producto.nuneroArticulos}}</td>
                         <td>${{producto.costoUnitario}}</td>
-
                     </tr>
                 {%endfor%}
                 </tbody>
@@ -163,47 +147,44 @@
 
                 <div class="divider"></div>
                 <p>Costo unitario</p>
-                <div id="canvas-holder">
-                    <canvas id="chart-area2" width="500" height="250" ></canvas>
-                </div>
+                <canvas id="chart2" width="200" height="70"></canvas>
                 <script>
-                    var data = {
-                        labels : [
-                            {% for producto in object_list %}
-                                "{{ producto.nombre}}",
-                            {% endfor %}],
-
-                        datasets : [
-                            {
-                                label: "Primera serie de datos",
-                                fillColor : "rgba(240, 70, 70, 0.2)",
-                                strokeColor : "#f81313",
-                                pointColor : "#1e45d7",
-                                pointStrokeColor : "#fff",
-                                pointHighlightFill : "#fff",
-                                pointHighlightStroke : "rgba(220,220,220,1)",
-
-                                data : [
+                    var ctx = document.getElementById("chart2");
+                    var chart2 = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels : [
+                                {% for producto in object_list %}
+                                    "{{ producto.nombre}}",
+                                {% endfor %}],
+                            datasets: [{
+                                label: 'Costo Unitario',
+                                data:  [
                                     {% for producto in object_list%}
                                         {{producto.costoUnitario}},
-                                    {% endfor %}
-                                ]
+                                    {% endfor %}],
+                                backgroundColor:'rgba(128, 0, 0, 0.2)',
+                                borderColor: 'rgba(128,0,0,1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
                             }
-                        ]
-
-                    };
-                    var ctx2 = document.getElementById("chart-area2").getContext("2d");
-                    window.myPie = new Chart(ctx2).Bar(data,{responsive:false});
-
+                        }
+                    });
                 </script>
+
                 <p class="center">Producto</p>
             {% else %}
                 <h5>No hay producción</h5>
             {% endif %}
-
         </div>
-
-
     </main>
 
 

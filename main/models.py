@@ -217,5 +217,10 @@ class MovimientoMp(models.Model):
     cantidad=models.FloatField(default=0.0)
     precioUnitario= models.FloatField(default=0.0)
 
+    def totalMovimiento(self):
+        return self.cantidad*self.precioUnitario
+
+
+
 
 

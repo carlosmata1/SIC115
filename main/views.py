@@ -12,6 +12,7 @@ from main.forms import EmpleadoForm
 from main.forms import LoginForm
 from main.forms import MovimientoForm
 from main.forms import TransaccionForm
+from main.models import MovimientoMp
 from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento, ordenDeFabricacion, producto
 
 
@@ -227,17 +228,54 @@ class empleado_list(ListView):
     model = Empleado
     template_name = 'main/list_empleados.html'
 
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/list_empleados.html', {
+            'titulo':'Empleados',
+            'object_list': Empleado.objects.all()
+        })
+
+
 
 class planilla(ListView):
     model = Empleado
     template_name = 'main/Planilla.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/Planilla.html', {
+            'titulo':'Planilla',
+            'object_list': Empleado.objects.all()
+        })
+
 
 
 class listaOrdenes(ListView):
     model = ordenDeFabricacion
     template_name = 'main/ordenFabricacion.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/ordenFabricacion.html', {
+            'titulo':'Ordenes de Fabricación',
+            'object_list': ordenDeFabricacion.objects.all()
+        })
+
 
 
 class listaProductos(ListView):
     model = producto
     template_name = 'main/produccion_ventas.html'
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/produccion_ventas.html', {
+            'titulo':'Producción y Ventas',
+            'object_list': producto.objects.all()
+        })
+
+
+
+class listaMovimientosMP(ListView):
+    model = MovimientoMp
+    template_name = 'main/inventarioMP.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/inventarioMP.html', {
+            'titulo':'Inventario de materia Prima',
+            'object_list': MovimientoMp.objects.all()
+        })
+

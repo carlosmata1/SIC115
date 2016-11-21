@@ -103,3 +103,50 @@ class EmpleadoForm(forms.ModelForm):
             raise ValidationError("Los nombres no deben contener números")
 
         return nombres
+
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Empleado
+
+        fields = [
+
+        ]
+        labels = {
+
+        }
+        widgets = {
+
+        }
+
+
+
+class OrdenForm(forms.ModelForm):
+    class Meta:
+        model = Empleado
+
+        fields = [
+
+        ]
+        labels = {
+
+        }
+        widgets = {
+
+        }
+
+
+
+class MovimientoForm(forms.ModelForm):
+    class Meta:
+        model = Empleado
+
+        fields = [
+
+        ]
+        labels = {
+
+        }
+        widgets = {
+
+        }
