@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1212dae-74ac-431b-bff2-4e13c0c37658" name="Default" comment="add orden migracion">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/templates/main/agregarMovimientoMP.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+    <list default="true" id="f1212dae-74ac-431b-bff2-4e13c0c37658" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frances/urls.py" afterPath="$PROJECT_DIR$/frances/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/forms.py" afterPath="$PROJECT_DIR$/main/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/models.py" afterPath="$PROJECT_DIR$/main/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/Planilla.html" afterPath="$PROJECT_DIR$/main/templates/main/Planilla.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/agregarEmpleado.html" afterPath="$PROJECT_DIR$/main/templates/main/agregarEmpleado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/inventarioMP.html" afterPath="$PROJECT_DIR$/main/templates/main/inventarioMP.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/views.py" afterPath="$PROJECT_DIR$/main/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/produccion_ventas.html" afterPath="$PROJECT_DIR$/main/templates/main/produccion_ventas.html" />
     </list>
     <ignored path="frances.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inventarioMP.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/templates/main/inventarioMP.html">
+      <file leaf-file-name="produccion_ventas.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/templates/main/produccion_ventas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+            <state relative-caret-position="340">
+              <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -164,7 +156,6 @@
         <option value="$PROJECT_DIR$/main/admin.py" />
         <option value="$PROJECT_DIR$/main/templates/main/list_empleados.html" />
         <option value="$PROJECT_DIR$/main/templates/template_home.html" />
-        <option value="$PROJECT_DIR$/main/templates/main/produccion_ventas.html" />
         <option value="$PROJECT_DIR$/main/templates/main/ordenFabricacion.html" />
         <option value="$PROJECT_DIR$/main/templates/main/agregarOrden.html" />
         <option value="$PROJECT_DIR$/main/templates/main/Planilla.html" />
@@ -176,6 +167,7 @@
         <option value="$PROJECT_DIR$/main/models.py" />
         <option value="$PROJECT_DIR$/main/templates/main/agregarMovimientoMP.html" />
         <option value="$PROJECT_DIR$/main/templates/main/inventarioMP.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/produccion_ventas.html" />
       </list>
     </option>
   </component>
@@ -1060,7 +1052,7 @@
       <workItem from="1479688962470" duration="6644000" />
       <workItem from="1479698671546" duration="390000" />
       <workItem from="1479730669981" duration="8457000" />
-      <workItem from="1479754251599" duration="9186000" />
+      <workItem from="1479754251599" duration="9681000" />
     </task>
     <task id="LOCAL-00001" summary="Commit inicial. El login está funcional, pero la página &quot;acerca de&quot; no está completa">
       <created>1477889122970</created>
@@ -1272,11 +1264,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479755045702</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="modificacion de formulario de inventario">
+      <created>1479784535470</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1479784535470</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159765000" />
+    <option name="totallyTimeSpent" value="160260000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1330,7 +1329,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Se actualizaron las vistas para que tuvieran los cambios de Dn. Luis y el Sr. Daniel&#10;* Falta solucionar los problemas con los select-options del &quot;libro_diario.html&quot;" />
     <MESSAGE value="*Se optimizó el código de algunas páginas&#10;* Falta solucionar los problemas con los select-options del &quot;libro_diario.html&quot;" />
     <MESSAGE value="Se añadió un archivo de credenciales para iniciar sesión en django" />
     <MESSAGE value="La tipografía ROBOTO, proporcionada por el framework ha sido añadida" />
@@ -1355,7 +1353,8 @@
     <MESSAGE value="actualizacion de graficos e inventario de MP" />
     <MESSAGE value="add orden" />
     <MESSAGE value="add orden migracion" />
-    <option name="LAST_COMMIT_MESSAGE" value="add orden migracion" />
+    <MESSAGE value="modificacion de formulario de inventario" />
+    <option name="LAST_COMMIT_MESSAGE" value="modificacion de formulario de inventario" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1554,14 +1553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/produccion_ventas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/agregarOrden.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1594,6 +1585,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/inventarioMP.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
@@ -1602,10 +1601,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/inventarioMP.html">
+    <entry file="file://$PROJECT_DIR$/main/templates/main/produccion_ventas.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        <state relative-caret-position="340">
+          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
           <folding />
         </state>
       </provider>

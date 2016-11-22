@@ -19,14 +19,10 @@
                     <tr>
                         <th data-field="numero">No orden</th>
                         <th data-field="MPUsada">MP utilizada</th>
-                        <th data-field="IIPP">Inv. Inicial P en P</th>
-                        <th data-field="mod">MOD</th>
-                        <th data-field="CIF">CIF</th>
-                        <th data-field="IFPP">Inv. Final P en P</th>
+                        <th data-field="mod">Mano de obra D.</th>
+                        <th data-field="CIF">Costos indirectos F.</th>
                         <th data-field="CAT">Costo Art. terminado</th>
-                        <th data-field="CAT">Inv. Ini P Terminado</th>
                         <th data-field="CAT">Art. terminados Disp.</th>
-                        <th data-field="CAT">Inv. Fin P Terminado</th>
                         <th data-field="CAT">Costo de lo vendido</th>
                     </tr>
                     </thead>
@@ -37,14 +33,10 @@
                         <tr>
                             <td>{{producto.ordenDeFabricacion.numOrden}}</td>
                             <td>{{producto.ordenDeFabricacion.totalMP}}</td>
-                            <td>{{producto.invIniPenP}}</td>
                             <td>{{producto.ordenDeFabricacion.totalMOD}}</td>
                             <td>{{producto.ordenDeFabricacion.importe}}</td>
-                            <td>{{producto.invFinalPenP}}</td>
                             <td>{{producto.costoArtTerminado}}</td>
-                            <td>{{producto.invInicialProductTerminado}}</td>
                             <td>{{producto.artTerDisp}}</td>
-                            <td>{{producto.invFinalProductTerminado}}</td>
                             <td>{{producto.costoVendido}}</td>
                         </tr>
                     {%endfor%}
@@ -58,10 +50,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+
 
                         </tr>
 
