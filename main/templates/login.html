@@ -25,7 +25,7 @@
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix white-text">account_circle</i>
                                     {{ form.username }}
-                                    <label class="active " for="first_name2" >Nombre</label>
+                                    <label class="active " for="{{ form.username.id_for_label }}" >{{ form.username.label }}</label>
                                 </div>
                             </div>
 
@@ -33,7 +33,7 @@
                                 <div class="input-field col s10">
                                     <i class="material-icons prefix white-text">lock_outline</i>
                                     {{ form.password }}
-                                    <label for="password">Password</label>
+                                    <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
                                 </div>
                             </div>
 

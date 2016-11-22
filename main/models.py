@@ -7,7 +7,7 @@ class Puesto(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
     nombre = models.CharField(max_length=50, null=False)
     salario = models.DecimalField(max_digits=5, decimal_places=2, null=True)
-    salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+    salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     def __str__(self):
         return self.nombre
 
@@ -152,9 +152,9 @@ class Prestacion(models.Model):
 
 class ordenDeFabricacion(models.Model):
     numOrden=models.IntegerField(editable=False, auto_created=True, primary_key=True, unique=True)
-    fechaExpedicion=models.DateField
-    fechaRequerida=models.DateField
-    material=models.CharField(max_length=100, null=False)
+    fechaExpedicion=models.DateField(default='2000-01-01')
+    fechaRequerida=models.DateField(default='2000-01-01')
+    materal=models.CharField(max_length=100, null=False)
     catidadMP=models.FloatField(default=0.0)
     costoUnitarioMP=models.FloatField(default=0.0)
     obrero=models.ForeignKey(Empleado, null=False)
@@ -172,6 +172,9 @@ class ordenDeFabricacion(models.Model):
     def importe(self):
         return (self.catidadMP*self.costoUnitarioMP)*self.tasaCIF
 
+    def __str__(self):
+        numeroOrden=str(self.numOrden)
+        return numeroOrden
 
 
 
@@ -221,8 +224,16 @@ class MovimientoMp(models.Model):
     tipo = models.CharField(max_length=1, choices=tipo_opt, null=False)
     fecha=models.DateField()
     nombre=models.CharField(max_length=50)
-    cantidad=models.FloatField(default=0.0)
-    precioUnitario= models.FloatField(default=0.0)
+    cantidad=models.FloatField()
+    precioUnitario= models.FloatField()
+
+    def totalMovimiento(self):
+        return self.cantidad*self.precioUnitario
+
+    def __str__(self):
+        return str(self.nombre)
+
+
 
 class Depreciacion(models.Model):
     id=models.IntegerField(editable=False, auto_created=True,primary_key=True)
