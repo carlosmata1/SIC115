@@ -5,16 +5,9 @@ from django.db import models
 
 class Puesto(models.Model):
     id = models.IntegerField(editable=False, auto_created=True, primary_key=True)
-
-    nombre = models.TextField(max_length=30, null=False)
-    salario = models.DecimalField(max_digits=5, decimal_places=5, null=True)
-
-    nombre = models.CharField(max_length=30, null=False)
-
+    nombre = models.CharField(max_length=50, null=False)
+    salario = models.DecimalField(max_digits=5, decimal_places=2, null=True)
     salarioNominalDiario = models.DecimalField(max_digits=10, decimal_places=2, null=False)
-
-    salarioNominalDiario = models.FloatField(default=0.0, null=False)
-
     def __str__(self):
         return self.nombre
 
@@ -30,14 +23,14 @@ class Empleado(models.Model):
     nombres = models.CharField(max_length=50, null=False)
     apellidos = models.CharField(max_length=50, null=False)
     edad = models.IntegerField(null=False)
-    sexo = models.CharField(max_length=1, choices=sexo_opt, null=False)
+    sexo = models.CharField(max_length=1, null=False)
     direccion = models.TextField(max_length=200, null=False)
     telefono = models.CharField(max_length=9, null=False)
     contacto = models.CharField(max_length=9, null=False)
     dui = models.CharField(max_length=10, null=False)
     nit = models.CharField(max_length=17, null=False)
     afp = models.CharField(max_length=12, null=False)
-    puesto = models.ForeignKey(Puesto, on_delete=models.CASCADE)
+    puesto = models.ForeignKey(Puesto, null=True)
     activo = models.BooleanField()
     def __str__(self):
         return self.nombres+" "+self.apellidos
@@ -84,6 +77,13 @@ class TipoCuenta(models.Model):
 
     def __str__(self):
         return self.nombre
+class CuentaMayor(models.Model):
+    id=models.IntegerField(editable=False, auto_created=True, primary_key=True)
+    nombre=models.CharField(max_length=50, null=False)
+    codigo=models.CharField(max_length=5, null=False)
+    def __str__(self):
+        return self.nombre
+
 
 
 class Cuenta(models.Model):
@@ -97,7 +97,7 @@ class Cuenta(models.Model):
     codigo= models.CharField(max_length=5, null=False, default=1)
     acreedor=models.BooleanField(default=True)
     rubro=models.ForeignKey(Rubro, null=True)
-
+    cuentaMayor=models.ForeignKey(CuentaMayor,null=True)
     def __str__(self):
         return self.nombre
 
@@ -210,3 +210,37 @@ class producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class MovimientoMp(models.Model):
+    tipo_opt = (
+        ('E', 'Entrada'),
+        ('S', 'Salida'),
+    )
+    idMov=models.IntegerField(primary_key=True, editable=False, auto_created=True)
+    tipo = models.CharField(max_length=1, choices=tipo_opt, null=False)
+    fecha=models.DateField()
+    nombre=models.CharField(max_length=50)
+    cantidad=models.FloatField(default=0.0)
+    precioUnitario= models.FloatField(default=0.0)
+
+class Depreciacion(models.Model):
+    id=models.IntegerField(editable=False, auto_created=True,primary_key=True)
+    cantidad=models.CharField(max_length=50)
+    cuentaLibro=models.ForeignKey(Cuenta,null=False)
+
+   
+class EquipoDespreciable(models.Model):
+    id=models.IntegerField(editable=False, auto_created=True,primary_key=True)
+    nombre=models.CharField(max_length=50)
+    vidaUtil=models.IntegerField()
+    valorRecuperacion=models.FloatField(default=0.0)
+    cuentaValorCompra=models.ForeignKey(Cuenta,null=False)
+    depreciacion=models.ForeignKey(Depreciacion,null=False)
+    def __str__(self):
+        return self.nombre
+
+        
+
+
+

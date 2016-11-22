@@ -3,11 +3,11 @@ import datetime
 from django import forms
 from django.core.exceptions import ValidationError
 
-from models import Cuenta,Rubro,Transaccion,Empleado,TipoTransaccion
+from models import Cuenta,Rubro,Transaccion,Empleado,TipoTransaccion,CuentaMayor
 
 tiposCuentas=((1, 'Activo',), (2, 'Pasivo',), (3, 'Capital',),(4, 'Resultado',))
 DATE_INPUT_FORMATS = ('%d-%m-%Y')
-debes=((True,'False',),(False,'True',))
+debes=((True,'Debe',),(False,'Haber',))
 
 
 class LoginForm(forms.Form):
@@ -21,33 +21,42 @@ class LoginForm(forms.Form):
 
 class CuentaForm(forms.Form):
     nombre = forms.CharField(required=True,
-                             label='Nombre de la cuenta')
+                             label='Nombre de la cuenta',
+                              widget=forms.TextInput(attrs={'id': 'cuenta'}))
+    nombre1 = forms.CharField(required=True,
+                             label='Nombre de la cuenta2',
+                              widget=forms.TextInput(attrs={'id': 'cuenta1'}))
     rubro = forms.ModelChoiceField(required=True,
                                    queryset=Rubro.objects.all())
     tipo = forms.ChoiceField(required=True,
-                             choices=tiposCuentas)
+                             choices=tiposCuentas,
+                             widget=forms.Select(attrs={'id': 'tipo'}))
+    cuenta_Mayor=forms.ModelChoiceField(required=True,queryset=CuentaMayor.objects.all())
 
 
 class MovimientoForm(forms.Form):
-    cuenta = forms.ModelChoiceField(label='Eliga la cuenta a realizar el movimiento',
-                                    queryset=Cuenta.objects.all())
-    tipo = forms.MultipleChoiceField(
+    cuenta=forms.ModelChoiceField(label='Eliga la cuenta a realizar el movimiento',
+        queryset=Cuenta.objects.all())
+    
+
+    tipo=forms.MultipleChoiceField(
         required=False,
-        widget=forms.CheckboxSelectMultiple(attrs={'id': 'test6p', 'checked': 'checked'}),
-        choices=debes,
+        widget=forms.CheckboxSelectMultiple(attrs={'id':'test6p','checked':'checked'}),
+        choices=debes
     )
-    cantidad = forms.DecimalField(label='Cantidad a transferir a Cuenta:', max_digits=10, decimal_places=2, min_value=0)
+    cantidad=forms.DecimalField(label='Cantidad a transferir a Cuenta:',max_digits=10,decimal_places=2,min_value=0)
 
 
 class TransaccionForm(forms.Form):
-    monto = forms.DecimalField(label='monto de transaccion', max_digits=10, decimal_places=2, min_value=0.0)
-    empleado = forms.ModelChoiceField(required=True,
-                                      queryset=Empleado.objects.all())
-    tipo = forms.ModelChoiceField(required=True,
-                                  queryset=TipoTransaccion.objects.all())
-    descripcion = forms.CharField(widget=forms.Textarea)
-    fecha = forms.DateField()
+    monto=forms.DecimalField(label='monto de transaccion',max_digits=10, decimal_places=2,min_value=0.0)
+    empleado=forms.ModelChoiceField(required=True,
+            queryset=Empleado.objects.all())
+    tipo=forms.ModelChoiceField(required=True,
+            queryset=TipoTransaccion.objects.all())
+    descripcion=forms.CharField(widget=forms.Textarea)
 
+    fecha=forms.DateField()
+    
 
 class EmpleadoForm(forms.ModelForm):
     class Meta:
@@ -103,3 +112,9 @@ class EmpleadoForm(forms.ModelForm):
                  raise ValidationError("Los nombres no deben contener números")
 
             return nombres
+class EquipoForm(forms.Form):
+    nombre=forms.CharField(required=True, label="Ingrese el nombre del equipo a comprar")
+    vida_util=forms.IntegerField(required=True,label="Ingrese la vida util del dispositivo")
+    recuperacion=forms.DecimalField(label="Ingrese el valor de recuperacion")
+    depreciacion=forms.DecimalField(label="ingrese la depreciacion del equipo")
+

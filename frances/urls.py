@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^planilla/', views.planilla.as_view(), name="planilla"),
     url(r'^ordenes/', views.listaOrdenes.as_view(), name="ordenes"),
     url(r'^produccion/', views.listaProductos.as_view(), name="produccion"),
+    url(r'^equipo/',views.equipo_view,name="compra_equipo"),
 
 
 ]

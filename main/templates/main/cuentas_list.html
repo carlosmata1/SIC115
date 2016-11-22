@@ -15,8 +15,22 @@
 <div class="card-action">
                         <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Agregar Cuenta</a>
                     </div>
+                    <div id="modal1" class="modal" height="100">
+        <div class="modal-content" >
+            <h4>Crear Cuenta</h4>
+<form method="POST" action="{%url 'cuenta_nueva'%}" >{%csrf_token%}
+
+                {{cuenta.as_p}}
+
+                <button type="submit" class="save btn btn-default">Guardar cuenta</button>
+
+            </form>
+ 
+</div>
+</div>
 <table class="striped">
     <a class="waves-effect waves-light btn modal-trigger #2e7d32 green darken-3" href="#modal1">Agregar Cuenta</a>
+
 </div>
 <br>
 <br>
@@ -37,7 +51,6 @@
         <th data-field="saldoFinal">Saldo Final</th>
     </tr>
 
-        <th data-field="saldo">Debe</th>
 
 	</tr>
 </thead>
@@ -48,18 +61,16 @@
 		<td>{{activo.codigo}}</td>
 		<td>{{activo.rubro.nombre}}</td>
 		<td>{{activo.nombre}}</td>
-        <td>{{activo.debe}}</td>
-
+    <td>{{activo.debe}}</td>
          <td>{{activo.haber}}</td>
          <td>{{activo.saldoFinal}}</td>
+         </tr>
 		{%endfor%}
 
 
 
-
-    {%endfor%}
-	</tr>
-	<tr>
+	
+	
 	
 
 </tbody>
@@ -101,12 +112,6 @@
          <td>{{pasivo.saldoFinal}}</td>
 		{%endfor%}
 
-        <td>{{pasivo.haber}}</td>
-
-    {%endfor%}
-	</tr>
-
-	<tr>
 	
 	</tr>
         </tbody>
@@ -122,9 +127,6 @@
     {% if patrimonios %}
     <div class="divider"></div>
     <table class="highlight">
-    {% if patrimonios %}
-    <table class="striped centered">
-
         <thead>
 
         <tr>
@@ -172,7 +174,6 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
-
             <th data-field="debe">Debe</th>
              <th data-field="debe">Haber</th>
              <th data-field="saldoFinal">Saldo Final</th>
@@ -214,6 +215,7 @@
             <th data-field="id">Codigo</th>
             <th data-field="rubro">Rubro</th>
             <th data-field="nombre">Nombre de Cuenta</th>
+
           <th data-field="debe">Debe</th>
              <th data-field="debe">Haber</th>
              <th data-field="saldoFinal">Saldo Final</th>
@@ -244,61 +246,23 @@
 
     <br>
 
-    <h5>6. Contra Activos</h5>
-    <div class="divider"></div>
-{% if contraActivos %}
-    <table class="striped centered">
-
-        <thead>
-
-        <tr>
-            <th data-field="id">Codigo</th>
-            <th data-field="rubro">Rubro</th>
-            <th data-field="nombre">Nombre de Cuenta</th>
-            <th data-field="saldo">Haber</th>
-
-        </tr>
-        </thead>
-        <tbody>
-	{%for contra in contraActivos%}
-	<tr>
-		<td>{{contra.codigo}}</td>
-		<td>{{contra.rubro.nombre}}</td>
-		<td>{{contra.nombre}}</td>
-        <td>{{contra.haber}}</td>
-		{%endfor%}
-	</tr>
-        </tbody>
-    </table>
-{% else %}
-    <h6>No hay registros</h6>
-{% endif %}
+   
 
 
 </div>
-</main>
 
 
-    <div id="modal1" class="modal" height="100">
-        <div class="modal-content" >
-            <h4>Crear Cuenta</h4>
 
-</form>
-</div>
-</div>
-</div>
-</main>
-{% endblock %}
-            <form method="POST" action="{%url 'cuenta_nueva'%}" >{%csrf_token%}
+    
 
-                {{cuenta.as_p}}
 
-                <button type="submit" class="save btn btn-default">Guardar cuenta</button>
 
-            </form>
+           
         </div>
     </div>
-
-
-
+    </main>
 {% endblock %}
+{%block javascript%}
+
+
+{%endblock%}
