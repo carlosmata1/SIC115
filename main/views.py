@@ -3,12 +3,12 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponseRedirect,render_to_response
 
 
 from django.views.generic import TemplateView
 
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy,reverse
 from django.views.generic import ListView
 from django.views.generic.edit import FormView, CreateView
 
@@ -16,6 +16,7 @@ from main.forms import CuentaForm
 from main.forms import EmpleadoForm
 from main.forms import LoginForm
 from main.forms import MovimientoForm
+from main.forms import EquipoForm
 
 
 from django.forms import formset_factory
@@ -28,7 +29,7 @@ from main.forms import TransaccionForm
 from main.forms import EquipoForm
 from main.forms import TransaccionForm,OrdenForm
 from main.models import MovimientoMp
-from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento, ordenDeFabricacion, producto
+from models import Cuenta, TipoCuenta, Transaccion, Empleado, Movimiento, ordenDeFabricacion, producto,Depreciacion,EquipoDespreciable,CuentaMayor
 
 
 @login_required(login_url='login')
@@ -132,8 +133,10 @@ def cuenta_nueva(request):
 
 
 def ajustes_financieros_view(request):
+    equipo=EquipoDespreciable.objects.all()
     return render(request, 'main/ajustes_financieros.html', {
-        'titulo': 'Ajustes',
+        
+        'titulo': 'Ajustes','equipos':equipo
     })
 
 
@@ -180,7 +183,7 @@ def agregar_movimiento(request):
 
 def agregar_Transaccion(request):
     transaccion=Transaccion()
-    formulario=TransaccionForm(request.POST)
+    
     movimientoF = formset_factory(MovimientoForm)
     if request.method=='POST':
         formulario=TransaccionForm(request.POST)
@@ -329,6 +332,22 @@ class crearMovimientoMP(CreateView):
     # def get(self, request, *args, **kwargs):
     #     return render(request, 'main/agregarMovimientoMP.html', {'titulo':'Agregar movimiento'})
 
-
+def compraEquipo(request):
+    
+    if request.method=='POST':
+        equipo=EquipoForm(request.POST)
+        if equipo.is_valid():
+            nombre=equipo.cleaned_data['nombre']
+            vida=equipo.cleaned_data['vida_util']
+            compra=equipo.cleaned_data['valor_de_compra']
+            recuperacion=equipo.cleaned_data['recuperacion']
+           
+            deprecio=(compra-recuperacion)/vida
+            Cuenta.objects.create(nombre="depreciacion "+nombre,tipo=TipoCuenta.objects.get(id=1),debe=0,haber=0,saldoFinal=0,codigo="127"+str(CuentaMayor.objects.filter(id=14).count()+1))
+            Depreciacion.objects.create(cantidad=deprecio,cuentaLibro=Cuenta.objects.get(id=Cuenta.objects.count()))
+            Cuenta.objects.create(nombre=nombre,tipo=TipoCuenta.objects.get(id=1),debe=compra,haber=0,saldoFinal=compra,codigo="123"+str(CuentaMayor.objects.filter(id=9).count()+1))
+            EquipoDespreciable.objects.create(nombre=nombre,vidaUtil=vida,valorRecuperacion=recuperacion,cuentaValorCompra=Cuenta.objects.get(id=Cuenta.objects.count()),depreciacion=Depreciacion.objects.get(id=Depreciacion.objects.count()),valorActual=compra)
+          
+            return reverse('ajustes_financieros')
 
 

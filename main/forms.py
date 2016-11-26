@@ -116,10 +116,11 @@ class EmpleadoForm(forms.ModelForm):
 
             return nombres
 class EquipoForm(forms.Form):
-    nombre=forms.CharField(required=True, label="Ingrese el nombre del equipo a comprar")
-    vida_util=forms.IntegerField(required=True,label="Ingrese la vida util del dispositivo")
-    recuperacion=forms.DecimalField(label="Ingrese el valor de recuperacion")
-    depreciacion=forms.DecimalField(label="ingrese la depreciacion del equipo")
+    nombre=forms.CharField(required=True, label="Ingrese el nombre del equipo a comprar",widget=forms.TextInput(attrs={'class':'input-field'}))
+    vida_util=forms.IntegerField(required=True,label="Ingrese la vida util del dispositivo", min_value=1)
+    valor_de_compra=forms.DecimalField(label="ingrese el valor de compra", min_value=0)
+    recuperacion=forms.DecimalField(label="Ingrese el valor de recuperacion", min_value=0)
+    
    
 
 

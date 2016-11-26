@@ -35,13 +35,10 @@
                        <td>{{empleado.nombres}}</td>
                        <td>{{empleado.apellidos}}</td>
                        <td>{{empleado.puesto.nombre}}</td>
-<<<<<<< HEAD
                        <td>${{empleado.puesto.salarioNominalDiario}}</td>
                        <td>${{empleado.puesto.salario}}</td>
-=======
                        <td>${{empleado.puesto.salarioNominalDiario|floatformat:"2"}}</td>
                        <td>${{empleado.salReal|floatformat:"2"}}</td>
->>>>>>> ba0e0960d0aec9149159ebbf945696d3b9ddf6fc
                    </tr>
                {%endfor%}
                </tbody>

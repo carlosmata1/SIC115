@@ -51,7 +51,7 @@ urlpatterns = [
 
     url(r'^inventario/', views.listaMovimientosMP.as_view(), name="inventario"),
     url(r'^add_mov/', views.crearMovimientoMP.as_view(), name="add_mov"),
-
+    url(r'^compra_equipo/', views.compraEquipo, name="agregar_equipo")
 
 
 

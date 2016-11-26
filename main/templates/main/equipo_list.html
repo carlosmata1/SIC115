@@ -3,10 +3,15 @@
 {% block titulo %}Estado de Comprobación{% endblock %}
 
 {% block contenido %}
-<main><div class="container"></div>
-<table>
+<main><div class="container">
+<form method="POST" action="{%url 'agregar_equipo'%}" >{%csrf_token%}
+
 {{comprarF.as_table}}
-</table>
+
+<button type="submit"  class="save btn btn-default">Agregar Equipo</button>
+</form>
+
+</div>
 </main>
 </main>
 {% endblock %}
